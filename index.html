@@ -77,7 +77,6 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding-bottom: 80px;
         }
 
         .pagina.ativa {
@@ -181,7 +180,7 @@
             width: 100%;
         }
 
-        /* BOTÃO DE MODELO DIFERENTE E CONTEÚDO PARALELO */
+        /* BOTÃO DE MODELO DIFERENTE */
         .btn-modelo-diferente {
             background: #F39C12;
             color: #fff;
@@ -258,39 +257,40 @@
         .btn-avancar { background: #2E86C1; color: #fff; }
         .btn-desativado { opacity: 0.5; pointer-events: none; }
 
-        /* BOTÃO DO WHATSAPP MELHORADO */
-        .whatsapp-container {
-            position: absolute;
-            bottom: 85px;
-            right: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            z-index: 100;
+        /* NOVO: BOTÃO E CONTATO NA CAPA */
+        .bloco-ajuda-capa {
+            width: 100%;
+            background: #E8F8F5;
+            border: 4px solid #25D366;
+            border-radius: 16px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .aviso-whatsapp {
-            background: #fff;
-            color: #333;
-            font-size: 0.85em;
-            font-weight: bold;
-            padding: 5px 10px;
-            border-radius: 10px;
+        .bloco-ajuda-capa h3 {
+            color: #128C7E;
+            font-size: 1.2em;
             margin-bottom: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            border: 2px solid #25D366;
         }
-        .whatsapp-btn {
+        .numero-destaque {
+            font-size: 1.8em;
+            font-weight: 900;
+            color: #2E86C1;
+            margin: 10px 0;
+            letter-spacing: 1px;
+        }
+        .btn-whatsapp-real {
             background-color: #25D366;
             color: white;
-            border-radius: 50px;
-            padding: 12px 20px;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            font-weight: 900;
+            padding: 12px;
+            border-radius: 10px;
             font-size: 1.1em;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            border: 2px solid #128C7E;
+            font-weight: bold;
+            display: inline-block;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
         /* ACESSIBILIDADE */
@@ -333,7 +333,7 @@
 
         <div class="paginas-wrapper">
             
-            <!-- PÁGINA 0: CAPA / ÍNDICE -->
+            <!-- PÁGINA 0: CAPA / ÍNDICE COM CONTATO -->
             <div class="pagina ativa" id="pagina-0">
                 <div class="casal-container">
                     <span class="casal-icon">👴🏽</span>
@@ -349,6 +349,17 @@
                     <button onclick="irParaPagina(4); pararAudio();"><span>🚨</span> 4. Cuidado com Golpes!</button>
                     <button onclick="irParaPagina(5); pararAudio();"><span>📦</span> 5. Golpe da encomenda</button>
                     <button onclick="irParaPagina(6); pararAudio();"><span>🚫</span> 6. Bloquear chato</button>
+                </div>
+
+                <!-- CONTATO DO ORIENTADOR NA CAPA -->
+                <div class="bloco-ajuda-capa">
+                    <h3>💬 Precisa de Ajuda?</h3>
+                    <p style="font-size: 1em; font-weight: normal; margin-bottom: 5px;">Fale com o orientador do projeto:</p>
+                    <div class="numero-destaque">(61) 99975-8262</div>
+                    <!-- O link abaixo tenta abrir o WhatsApp. Se falhar, o número está logo acima na tela. -->
+                    <a href="https://wa.me/5561999758262" target="_blank" class="btn-whatsapp-real">
+                        Abrir WhatsApp
+                    </a>
                 </div>
             </div>
 
@@ -431,14 +442,6 @@
                 <div class="texto-oculto" style="display:none;">Para bloquear um número chato, abra a conversa com essa pessoa. No canto de cima, aperte nos três pontinhos. No menu que abrir, aperte na palavra Bloquear. Assim você não recebe mais mensagens dessa pessoa.</div>
             </div>
 
-        </div>
-
-        <!-- BOTÃO DO WHATSAPP COM TEXTO DE APOIO -->
-        <div class="whatsapp-container">
-            <div class="aviso-whatsapp">Dúvidas? Fale comigo</div>
-            <a href="https://api.whatsapp.com/send?phone=5561999758262&text=Ola%2C%20preciso%20de%20ajuda%20com%20o%20Guia%20do%20Celular" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
-                💬 Ajuda
-            </a>
         </div>
 
         <div class="barra-navegacao">
