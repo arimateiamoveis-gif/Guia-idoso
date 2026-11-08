@@ -31,7 +31,6 @@
             overflow: hidden;
         }
 
-        /* BARRA DO TOPO */
         .barra-topo {
             background: #2E86C1;
             color: #fff;
@@ -57,7 +56,6 @@
             gap: 5px;
         }
 
-        /* ÁREA DE CONTEÚDO */
         .paginas-wrapper {
             flex: 1;
             position: relative;
@@ -77,7 +75,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding-bottom: 80px; /* Espaço para o botão de ajuda não cobrir o texto */
+            padding-bottom: 80px;
         }
 
         .pagina.ativa {
@@ -86,7 +84,6 @@
             transform: translateX(0);
         }
 
-        /* ESTILOS INTERNOS */
         .casal-container {
             display: flex;
             justify-content: center;
@@ -115,7 +112,6 @@
             box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
         }
 
-        /* BOTÃO OUVIR */
         .btn-ouvir {
             background: #8E44AD;
             color: white;
@@ -184,7 +180,6 @@
             width: 100%;
         }
 
-        /* LISTA DE ÍNDICE */
         .lista-indice {
             width: 100%;
             display: flex;
@@ -208,7 +203,6 @@
         }
         .lista-indice button span { font-size: 1.5em; }
 
-        /* BARRA INFERIOR */
         .barra-navegacao {
             display: flex;
             background: #f8f9fa;
@@ -233,10 +227,9 @@
         .btn-avancar { background: #2E86C1; color: #fff; }
         .btn-desativado { opacity: 0.5; pointer-events: none; }
 
-        /* WHATSAPP (Ajustado para não cobrir o texto) */
         .whatsapp-btn {
             position: absolute;
-            bottom: 85px; /* Acima da barra de navegação */
+            bottom: 85px;
             right: 15px;
             background-color: #25D366;
             color: white;
@@ -252,7 +245,6 @@
             border: 2px solid #128C7E;
         }
 
-        /* ACESSIBILIDADE */
         .acessibilidade {
             position: absolute;
             top: 70px;
@@ -381,7 +373,6 @@
 
         </div>
 
-        <!-- Botão do WhatsApp posicionado acima da barra de navegação -->
         <a href="https://wa.me/5561999758262?text=Ola%2C%20preciso%20de%20ajuda%20com%20o%20Guia%20do%20Celular" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
             💬 Ajuda
         </a>
@@ -394,7 +385,6 @@
     </div>
 
     <script>
-        // LÓGICA DO LIVRO
         let paginaAtual = 0;
         const totalPaginas = document.querySelectorAll('.pagina').length - 1;
         const paginas = document.querySelectorAll('.pagina');
@@ -407,7 +397,7 @@
             paginaAtual = index;
             document.getElementById('pagina-' + paginaAtual).classList.add('ativa');
             atualizarBotoes();
-            pararAudio(); // Para o áudio sempre que mudar de página
+            pararAudio();
         }
 
         function mudarPagina(direcao) {
@@ -433,7 +423,6 @@
             }
         }
 
-        // LÓGICA DE ACESSIBILIDADE
         let tamanhoAtual = 16;
         const MIN = 14;
         const MAX = 24;
@@ -452,7 +441,6 @@
             }
         }
 
-        // LÓGICA DO ÁUDIO (TEXT-TO-SPEECH)
         let sintese = window.speechSynthesis;
 
         function falarTexto(idPagina) {
@@ -466,7 +454,7 @@
 
             const utterThis = new SpeechSynthesisUtterance(textoParaLer);
             utterThis.lang = 'pt-BR'; 
-            utterThis.rate = 0.9; // Velocidade ligeiramente reduzida
+            utterThis.rate = 0.9; 
             
             sintese.speak(utterThis);
         }
