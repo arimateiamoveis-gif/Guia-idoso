@@ -3,22 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia Fácil do Celular - Livro Digital</title>
+    <title>Guia Fácil do Celular</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #e9ecef; /* Fundo cinza claro para destacar o livro */
+            background: #e9ecef;
             color: #222;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden; /* Impede a rolagem normal da tela, o conteúdo é controlado */
+            overflow: hidden; 
         }
 
-        /* ESTRUTURA DO LIVRO */
         .livro-container {
             width: 100%;
             max-width: 500px;
@@ -32,7 +31,7 @@
             overflow: hidden;
         }
 
-        /* BARRA DO TOPO (ÍNDICE E CONTADOR) */
+        /* BARRA DO TOPO */
         .barra-topo {
             background: #2E86C1;
             color: #fff;
@@ -58,7 +57,7 @@
             gap: 5px;
         }
 
-        /* ÁREA DE CONTEÚDO (PÁGINAS) */
+        /* ÁREA DE CONTEÚDO */
         .paginas-wrapper {
             flex: 1;
             position: relative;
@@ -69,7 +68,7 @@
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             padding: 20px;
-            overflow-y: auto; /* Permite rolar se o texto for muito grande em telas pequenas */
+            overflow-y: auto;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -86,8 +85,8 @@
             transform: translateX(0);
         }
 
-        /* ESTILOS INTERNOS DAS PÁGINAS */
-        .vovo-icon { font-size: 6em; margin-bottom: 15px; line-height: 1; }
+        /* ESTILOS INTERNOS */
+        .casal-icon { font-size: 4.5em; margin-bottom: 15px; line-height: 1; }
         
         h1 { font-size: 2em; color: #2E86C1; margin-bottom: 10px; font-weight: 900; }
         h2 { font-size: 1.6em; color: #2E86C1; margin-bottom: 15px; font-weight: 900; }
@@ -95,16 +94,36 @@
 
         .card-icone {
             font-size: 5em;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             background: #EBF5FB;
             border-radius: 50%;
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
         }
+
+        /* BOTÃO OUVIR */
+        .btn-ouvir {
+            background: #8E44AD;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            width: 80%;
+            justify-content: center;
+        }
+        .btn-ouvir:active { background: #6C3483; }
 
         .passo {
             font-size: 1.1em;
@@ -155,18 +174,18 @@
             width: 100%;
         }
 
-        /* LISTA DE ÍNDICE (CAPA) */
+        /* LISTA DE ÍNDICE */
         .lista-indice {
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-top: 20px;
+            margin-top: 10px;
         }
         .lista-indice button {
             background: #EBF5FB;
             border: 3px solid #2E86C1;
-            padding: 15px;
+            padding: 12px;
             border-radius: 15px;
             font-size: 1.1em;
             font-weight: bold;
@@ -179,17 +198,17 @@
         }
         .lista-indice button span { font-size: 1.5em; }
 
-        /* BARRA DE NAVEGAÇÃO INFERIOR (BOTÕES) */
+        /* BARRA INFERIOR */
         .barra-navegacao {
             display: flex;
             background: #f8f9fa;
             border-top: 2px solid #dee2e6;
-            padding: 15px;
+            padding: 12px;
             gap: 10px;
         }
         .btn-nav {
             flex: 1;
-            padding: 18px;
+            padding: 15px;
             border: none;
             border-radius: 15px;
             font-size: 1.2em;
@@ -198,26 +217,26 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 5px;
         }
         .btn-voltar { background: #BDC3C7; color: #333; }
         .btn-avancar { background: #2E86C1; color: #fff; }
         .btn-desativado { opacity: 0.5; pointer-events: none; }
 
-        /* BOTÃO FLUTUANTE DO WHATSAPP */
+        /* WHATSAPP */
         .whatsapp-btn {
             position: absolute;
-            bottom: 90px; /* Acima da barra de navegação */
-            right: 20px;
+            bottom: 80px;
+            right: 15px;
             background-color: #25D366;
             color: white;
             border-radius: 50px;
-            padding: 12px 20px;
+            padding: 10px 15px;
             text-decoration: none;
             display: flex;
             align-items: center;
             font-weight: 900;
-            font-size: 1.1em;
+            font-size: 1em;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             z-index: 100;
             border: 2px solid #128C7E;
@@ -226,7 +245,7 @@
         /* ACESSIBILIDADE */
         .acessibilidade {
             position: absolute;
-            top: 70px; /* Abaixo da barra do topo */
+            top: 70px;
             right: 10px;
             z-index: 999;
             display: flex;
@@ -251,103 +270,108 @@
 
     <div class="livro-container">
         
-        <!-- BARRA DO TOPO -->
         <div class="barra-topo">
-            <button class="btn-indice" onclick="irParaPagina(0)">🏠 Início</button>
+            <button class="btn-indice" onclick="irParaPagina(0); pararAudio();">🏠 Início</button>
             <span id="contador">Capa</span>
         </div>
 
-        <!-- BOTÕES DE ACESSIBILIDADE -->
         <div class="acessibilidade">
             <button onclick="aumentarLetra()" title="Aumentar letra">A+</button>
             <button onclick="diminuirLetra()" title="Diminuir letra">A-</button>
         </div>
 
-        <!-- ÁREA DO LIVRO -->
         <div class="paginas-wrapper">
             
             <!-- PÁGINA 0: CAPA / ÍNDICE -->
             <div class="pagina ativa" id="pagina-0">
-                <span class="vovo-icon">👴🏽</span>
+                <span class="casal-icon">👴🏽👵🏽</span>
                 <h1>Guia Fácil do Celular</h1>
-                <p>Toque em um assunto abaixo para aprender:</p>
+                <p>Toque em um assunto para aprender:</p>
                 
                 <div class="lista-indice">
-                    <button onclick="irParaPagina(1)"><span>🔍</span> 1. Deixar a letra grande</button>
-                    <button onclick="irParaPagina(2)"><span>📹</span> 2. Ver os netos por vídeo</button>
-                    <button onclick="irParaPagina(3)"><span>🎤</span> 3. Mandar mensagem de voz</button>
-                    <button onclick="irParaPagina(4)"><span>🚨</span> 4. Cuidado com Golpes!</button>
-                    <button onclick="irParaPagina(5)"><span>📦</span> 5. Golpe da encomenda</button>
-                    <button onclick="irParaPagina(6)"><span>🚫</span> 6. Bloquear chato</button>
+                    <button onclick="irParaPagina(1); pararAudio();"><span>🔍</span> 1. Deixar a letra grande</button>
+                    <button onclick="irParaPagina(2); pararAudio();"><span>📹</span> 2. Ver os netos por vídeo</button>
+                    <button onclick="irParaPagina(3); pararAudio();"><span>🎤</span> 3. Mandar mensagem de voz</button>
+                    <button onclick="irParaPagina(4); pararAudio();"><span>🚨</span> 4. Cuidado com Golpes!</button>
+                    <button onclick="irParaPagina(5); pararAudio();"><span>📦</span> 5. Golpe da encomenda</button>
+                    <button onclick="irParaPagina(6); pararAudio();"><span>🚫</span> 6. Bloquear chato</button>
                 </div>
             </div>
 
-            <!-- PÁGINA 1: AUMENTAR LETRA -->
+            <!-- PÁGINA 1 -->
             <div class="pagina" id="pagina-1">
                 <div class="card-icone">🔍</div>
                 <h2>1. Deixar a letra grande</h2>
+                <button class="btn-ouvir" onclick="falarTexto('pagina-1')">🔊 Ouvir Explicação</button>
                 <div class="passo"><span class="passo-num">1</span> Abra a <strong>engrenagem</strong> ⚙️.</div>
                 <div class="passo"><span class="passo-num">2</span> Aperte em <strong>"Tela"</strong>.</div>
                 <div class="passo"><span class="passo-num">3</span> Aperte em <strong>"Letra"</strong>.</div>
                 <div class="passo"><span class="passo-num">4</span> Puxe a bolinha para o <strong>lado direito</strong> ➡️.</div>
+                <div class="texto-oculto" style="display:none;">Para deixar a letra grande, primeiro abra o aplicativo de configurações, que parece uma engrenagem. Depois, aperte na palavra Tela. Em seguida, aperte em Letra. Por fim, puxe a bolinha para o lado direito até ficar do tamanho que você gosta.</div>
             </div>
 
-            <!-- PÁGINA 2: CHAMADA DE VÍDEO -->
+            <!-- PÁGINA 2 -->
             <div class="pagina" id="pagina-2">
                 <div class="card-icone">📹</div>
                 <h2>2. Ver os netos por vídeo</h2>
+                <button class="btn-ouvir" onclick="falarTexto('pagina-2')">🔊 Ouvir Explicação</button>
                 <div class="passo"><span class="passo-num">1</span> Abra o <strong>WhatsApp</strong> verde.</div>
                 <div class="passo"><span class="passo-num">2</span> Aperte no <strong>nome</strong> da pessoa.</div>
                 <div class="passo"><span class="passo-num">3</span> Aperte na <strong>câmera</strong> 📷 em cima.</div>
                 <div class="passo"><span class="passo-num">4</span> Espere ela atender!</div>
                 <div class="seguranca">⚠️ Só ligue para quem você <strong>conhece</strong>.</div>
+                <div class="texto-oculto" style="display:none;">Para ver seus netos por vídeo, abra o aplicativo WhatsApp, que tem o desenho de um balão verde. Aperte no nome da pessoa. No canto de cima, aperte no desenho da câmera. Agora é só esperar a pessoa atender. Mas atenção: só ligue para quem você realmente conhece.</div>
             </div>
 
-            <!-- PÁGINA 3: MENSAGEM DE VOZ -->
+            <!-- PÁGINA 3 -->
             <div class="pagina" id="pagina-3">
                 <div class="card-icone">🎤</div>
                 <h2>3. Mandar mensagem de voz</h2>
+                <button class="btn-ouvir" onclick="falarTexto('pagina-3')">🔊 Ouvir Explicação</button>
                 <div class="passo"><span class="passo-num">1</span> Abra a conversa.</div>
                 <div class="passo"><span class="passo-num">2</span> <strong>Segure</strong> o botão do <strong>microfone</strong> e fale.</div>
                 <div class="passo"><span class="passo-num">3</span> Tire o dedo da tela para mandar.</div>
+                <div class="texto-oculto" style="display:none;">Para mandar uma mensagem de voz, abra a conversa com a pessoa. Encontre o botão do microfone, lá embaixo no lado direito. Segure o dedo nesse botão e fale normalmente. Quando terminar de falar, apenas tire o dedo da tela para a mensagem ser enviada.</div>
             </div>
 
-            <!-- PÁGINA 4: GOLPES EM GERAL -->
+            <!-- PÁGINA 4 -->
             <div class="pagina" id="pagina-4">
                 <div class="card-icone">🚨</div>
                 <h2>4. Cuidado com Golpes!</h2>
+                <button class="btn-ouvir" onclick="falarTexto('pagina-4')">🔊 Ouvir Explicação</button>
                 <div class="passo"><span class="passo-num">❌</span> Se alguém ligar pedindo <strong>senha</strong> ou PIX, <strong>DESLIGUE!</strong></div>
                 <div class="passo"><span class="passo-num">✅</span> Se for do banco, você mesmo liga para o número do <strong>cartão</strong>.</div>
-                <div class="aviso-legal">
-                    🛑 Nós NUNCA pedimos sua senha ou dinheiro.
-                </div>
+                <div class="aviso-legal">🛑 Nós NUNCA pedimos sua senha ou dinheiro.</div>
+                <div class="texto-oculto" style="display:none;">Muito cuidado com golpes. Se alguém ligar pedindo sua senha ou pedindo para fazer um PIX, desligue na hora. Se for realmente do banco, pegue o seu cartão e ligue você mesmo para o número que fica no verso do cartão. E lembre-se: nós nunca pedimos sua senha ou dinheiro.</div>
             </div>
 
-            <!-- PÁGINA 5: GOLPE DA ENCOMENDA -->
+            <!-- PÁGINA 5 -->
             <div class="pagina" id="pagina-5">
                 <div class="card-icone">📦</div>
                 <h2>5. Golpe da encomenda</h2>
+                <button class="btn-ouvir" onclick="falarTexto('pagina-5')">🔊 Ouvir Explicação</button>
                 <div class="passo"><span class="passo-num">❌</span> Se chegar mensagem dizendo que tem uma <strong>encomenda parada</strong>, <strong>NÃO CLIQUE NO LINK!</strong></div>
                 <div class="passo"><span class="passo-num">🗑️</span> Apague a mensagem na hora.</div>
+                <div class="texto-oculto" style="display:none;">Existe um golpe muito comum sobre encomendas. Se chegar uma mensagem no seu celular dizendo que você tem uma encomenda parada e mandar um link, não clique nesse link de jeito nenhum. Apenas apague a mensagem na hora.</div>
             </div>
 
-            <!-- PÁGINA 6: BLOQUEAR NÚMERO -->
+            <!-- PÁGINA 6 -->
             <div class="pagina" id="pagina-6">
                 <div class="card-icone">🚫</div>
                 <h2>6. Bloquear chato</h2>
+                <button class="btn-ouvir" onclick="falarTexto('pagina-6')">🔊 Ouvir Explicação</button>
                 <div class="passo"><span class="passo-num">1</span> Abra a conversa do número estranho.</div>
                 <div class="passo"><span class="passo-num">2</span> Aperte nos <strong>três pontinhos</strong> ⋮ em cima.</div>
                 <div class="passo"><span class="passo-num">3</span> Aperte em <strong>Bloquear</strong>.</div>
+                <div class="texto-oculto" style="display:none;">Para bloquear um número chato, abra a conversa com essa pessoa. No canto de cima, aperte nos três pontinhos. No menu que abrir, aperte na palavra Bloquear. Assim você não recebe mais mensagens dessa pessoa.</div>
             </div>
 
         </div>
 
-        <!-- BOTÃO DO WHATSAPP -->
         <a href="https://wa.me/5561999758262?text=Ola%2C%20preciso%20de%20ajuda%20com%20o%20Guia%20do%20Celular" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
             💬 Ajuda
         </a>
 
-        <!-- BARRA DE NAVEGAÇÃO INFERIOR -->
         <div class="barra-navegacao">
             <button class="btn-nav btn-voltar" id="btn-voltar" onclick="mudarPagina(-1)">⬅️ Voltar</button>
             <button class="btn-nav btn-avancar" id="btn-avancar" onclick="mudarPagina(1)">Avançar ➡️</button>
@@ -365,18 +389,14 @@
         const btnAvancar = document.getElementById('btn-avancar');
 
         function irParaPagina(index) {
-            // Esconde todas as páginas
             paginas.forEach(p => p.classList.remove('ativa'));
-            
-            // Mostra a página desejada
             paginaAtual = index;
             document.getElementById('pagina-' + paginaAtual).classList.add('ativa');
-
-            // Atualiza contador e botões
             atualizarBotoes();
         }
 
         function mudarPagina(direcao) {
+            pararAudio(); // Para o áudio se mudar de página
             const novaPagina = paginaAtual + direcao;
             if (novaPagina >= 0 && novaPagina <= totalPaginas) {
                 irParaPagina(novaPagina);
@@ -384,7 +404,6 @@
         }
 
         function atualizarBotoes() {
-            // Atualiza o texto do topo
             if (paginaAtual === 0) {
                 contador.innerText = "Capa / Índice";
                 btnVoltar.classList.add('btn-desativado');
@@ -393,7 +412,6 @@
                 btnVoltar.classList.remove('btn-desativado');
             }
 
-            // Desativa o botão avançar se estiver na última página
             if (paginaAtual === totalPaginas) {
                 btnAvancar.classList.add('btn-desativado');
             } else {
@@ -420,7 +438,35 @@
             }
         }
 
-        // Inicializa os botões
+        // LÓGICA DO ÁUDIO (TEXT-TO-SPEECH)
+        let sintese = window.speechSynthesis;
+        let falando = false;
+
+        function falarTexto(idPagina) {
+            // Se já estiver falando, para o áudio (funciona como botão de Pause)
+            if (sintese.speaking) {
+                sintese.cancel();
+                return;
+            }
+
+            // Pega o texto escondido da página específica
+            const pagina = document.getElementById(idPagina);
+            const textoParaLer = pagina.querySelector('.texto-oculto').innerText;
+
+            // Configura a voz
+            const utterThis = new SpeechSynthesisUtterance(textoParaLer);
+            utterThis.lang = 'pt-BR'; // Força o idioma Português do Brasil
+            utterThis.rate = 0.9; // Deixa a voz um pouquinho mais devagar para idosos entenderem melhor
+            
+            sintese.speak(utterThis);
+        }
+
+        function pararAudio() {
+            if (sintese.speaking) {
+                sintese.cancel();
+            }
+        }
+
         atualizarBotoes();
     </script>
 </body>
