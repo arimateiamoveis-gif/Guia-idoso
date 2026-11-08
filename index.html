@@ -1,424 +1,233 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia Fácil do Celular</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #e9ecef;
-            color: #222;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden; 
-        }
-        .livro-container {
-            width: 100%;
-            max-width: 500px;
-            height: 100vh;
-            max-height: 850px;
-            background: #fff;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        /* BARRA DO TOPO */
-        .barra-topo {
-            background: #2E86C1;
-            color: #fff;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1.1em;
-            font-weight: bold;
-            z-index: 10;
-        }
-        .btn-indice {
-            background: #fff;
-            color: #2E86C1;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 1em;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        /* ÁREA DE CONTEÚDO */
-        .paginas-wrapper { flex: 1; position: relative; overflow: hidden; }
-        .pagina {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            padding: 15px;
-            overflow-y: auto;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-            transform: translateX(20px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding-bottom: 80px;
-        }
-        .pagina.ativa { opacity: 1; visibility: visible; transform: translateX(0); }
-
-        /* ESTILOS INTERNOS */
-        .casal-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 10px; }
-        .casal-icon { font-size: 3.5em; line-height: 1; }
-        h1 { font-size: 1.8em; color: #2E86C1; margin-bottom: 10px; font-weight: 900; }
-        h2 { font-size: 1.5em; color: #2E86C1; margin-bottom: 15px; font-weight: 900; }
-        p { font-size: 1.1em; margin-bottom: 15px; font-weight: bold; }
-
-        /* BOTÃO OUVIR */
-        .btn-ouvir {
-            background: #8E44AD;
-            color: white;
-            border: none;
-            border-radius: 30px;
-            padding: 10px 20px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            width: 90%;
-            justify-content: center;
-        }
-        .btn-ouvir:active { background: #6C3483; }
-
-        /* --- AQUI COMEÇAM OS DESENHOS DAS TELAS DE CELULAR (MOCKUPS) --- */
-        .mockup-celular {
-            width: 200px;
-            height: 350px;
-            background: #f4f4f4;
-            border: 10px solid #333;
-            border-radius: 30px;
-            position: relative;
-            margin-bottom: 15px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
-        
-        /* Tela 1: Engrenagem */
-        .mockup-tela-1 { background: #fff; padding: 15px; }
-        .icone-config {
-            width: 60px; height: 60px;
-            background: #555; color: #fff;
-            border-radius: 15px;
-            display: flex; justify-content: center; align-items: center;
-            font-size: 30px; margin: 10px auto;
-            box-shadow: 0 0 0 5px #FFD700; /* Destaque amarelo */
-        }
-        .seta-apontando {
-            position: absolute; top: 60px; left: 30px; font-size: 40px; transform: rotate(45deg); color: #d93025;
-        }
-
-        /* Tela 2: WhatsApp */
-        .mockup-tela-2 { background: #e5ddd5; padding: 0; }
-        .topo-zap { background: #075e54; height: 50px; width: 100%; display: flex; align-items: center; padding: 0 10px; color: white; font-size: 14px; font-weight: bold; }
-        .btn-camera-zap { margin-left: auto; font-size: 20px; }
-        .area-batepapo { padding: 10px; font-size: 12px; color: #555; }
-
-        /* Tela 3: Microfone */
-        .mockup-tela-3 { background: #e5ddd5; justify-content: flex-end; padding: 10px; }
-        .barra-digitacao { background: #fff; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
-        .icone-microfone { font-size: 24px; color: #128C7E; box-shadow: 0 0 0 4px #FFD700; border-radius: 50%; padding: 2px;}
-
-        /* Tela 4: Golpe */
-        .mockup-tela-4 { background: #fee2e2; justify-content: center; align-items: center; padding: 15px; border: 3px solid #e74c3c;}
-        .alerta-golpe { font-size: 50px; margin-bottom: 10px;}
-        .texto-golpe { font-size: 14px; font-weight: bold; color: #922B21; text-align: center;}
-
-        /* PASSOS */
-        .passo {
-            font-size: 1em;
-            margin: 8px 0;
-            padding: 12px;
-            background: #E8F8F5;
-            border-radius: 12px;
-            border-left: 6px solid #28B463;
-            width: 100%;
-            text-align: left;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .passo-num {
-            background: #28B463; color: #fff; border-radius: 50%;
-            width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0; font-size: 1em;
-        }
-        .passo-icone { font-size: 1.3em; margin-left: auto; }
-
-        /* OUTROS BLOCOS */
-        .seguranca { background: #FADBD8; border: 3px dashed #E74C3C; padding: 12px; border-radius: 12px; margin-top: 10px; font-size: 1em; font-weight: bold; color: #922B21; width: 100%; }
-        .aviso-legal { background: #FFD700; border: 4px dashed #FF8C00; border-radius: 12px; padding: 15px; font-size: 1em; font-weight: bold; color: #8B4500; margin-top: 10px; }
-
-        .btn-modelo-diferente { background: #F39C12; color: #fff; border: none; border-radius: 10px; padding: 10px; font-size: 1em; font-weight: bold; cursor: pointer; margin: 15px 0; width: 100%; text-align: center; }
-        .conteudo-paralelo { display: none; background: #FEF9E7; border: 2px solid #F39C12; border-radius: 12px; padding: 15px; width: 100%; text-align: left; margin-bottom: 10px; }
-        .conteudo-paralelo.ativo { display: block; }
-        .conteudo-paralelo h3 { color: #D35400; font-size: 1em; margin-bottom: 8px; text-align: center; }
-        .conteudo-paralelo p { font-size: 0.9em; font-weight: normal; margin-bottom: 5px; }
-
-        /* CAPA */
-        .lista-indice { width: 100%; display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
-        .lista-indice button { background: #EBF5FB; border: 3px solid #2E86C1; padding: 10px; border-radius: 12px; font-size: 1em; font-weight: bold; color: #1B4F72; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 10px; }
-        .lista-indice button span { font-size: 1.3em; }
-
-        .bloco-ajuda-capa { width: 100%; background: #E8F8F5; border: 4px solid #25D366; border-radius: 16px; padding: 15px; margin-top: 15px; text-align: center; }
-        .bloco-ajuda-capa h3 { color: #128C7E; font-size: 1.1em; margin-bottom: 5px; }
-        .numero-destaque { font-size: 1.6em; font-weight: 900; color: #2E86C1; margin: 10px 0; letter-spacing: 1px; }
-        .btn-copiar { background-color: #25D366; color: white; padding: 10px; border-radius: 10px; font-size: 1em; font-weight: bold; width: 100%; border: none; cursor: pointer; }
-
-        /* NAVEGAÇÃO */
-        .barra-navegacao { display: flex; background: #f8f9fa; border-top: 2px solid #dee2e6; padding: 10px; gap: 10px; }
-        .btn-nav { flex: 1; padding: 15px; border: none; border-radius: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 5px; }
-        .btn-voltar { background: #BDC3C7; color: #333; }
-        .btn-avancar { background: #2E86C1; color: #fff; }
-        .btn-desativado { opacity: 0.5; pointer-events: none; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia Fácil do Celular</title>
+<style>
+- { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica, sans-serif; background: #e9ecef; color: #222; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; }
+.livro-container { width: 100%; max-width: 500px; height: 100vh; max-height: 850px; background: #fff; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: flex; flex-direction: column; overflow: hidden; }
+.barra-topo { background: #2E86C1; color: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center; font-size: 1.1em; font-weight: bold; z-index: 10; }
+.btn-indice { background: #fff; color: #2E86C1; border: none; padding: 8px 15px; border-radius: 20px; font-weight: bold; font-size: 1em; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+.paginas-wrapper { flex: 1; position: relative; overflow: hidden; }
+.pagina { position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: 20px; overflow-y: auto; opacity: 0; visibility: hidden; transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; transform: translateX(20px); display: flex; flex-direction: column; align-items: center; text-align: center; padding-bottom: 80px; }
+.pagina.ativa { opacity: 1; visibility: visible; transform: translateX(0); }
+.casal-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
+.casal-icon { font-size: 4em; line-height: 1; }
+h1 { font-size: 2em; color: #2E86C1; margin-bottom: 10px; font-weight: 900; }
+h2 { font-size: 1.6em; color: #2E86C1; margin-bottom: 15px; font-weight: 900; }
+p { font-size: 1.2em; margin-bottom: 15px; font-weight: bold; }
+.imagem-ilustrativa { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 6px solid #2E86C1; margin-bottom: 15px; box-shadow: 0 6px 12px rgba(0,0,0,0.2); }
+.imagem-demo { width: 100%; max-width: 320px; border-radius: 16px; border: 4px solid #2E86C1; margin-bottom: 10px; }
+.btn-ouvir { background: #8E44AD; color: white; border: none; border-radius: 30px; padding: 12px 25px; font-size: 1.2em; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); width: 80%; justify-content: center; }
+.btn-ouvir:active { background: #6C3483; }
+.passo { font-size: 1.1em; margin: 10px 0 0 0; padding: 15px; background: #E8F8F5; border-radius: 16px; border-left: 8px solid #28B463; width: 100%; text-align: left; font-weight: bold; display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.passo.ativo { border: 3px solid #2E86C1; background: #EBF5FB; }
+.passo-num { background: #28B463; color: #fff; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2em; }
+.passo-icone { font-size: 1.5em; margin-left: auto; }
+.demo { display: none; width: 100%; background: #FEF9E7; border: 3px dashed #F39C12; border-radius: 16px; padding: 15px; margin: 0 0 10px 0; text-align: center; }
+.demo.ativo { display: block; }
+.demo .icone-gigante { font-size: 4em; display: block; margin-bottom: 8px; animation: pulso 1s infinite; }
+@keyframes pulso { 0%{transform:scale(1)} 50%{transform:scale(1.15)} 100%{transform:scale(1)} }
+.demo p { font-size: 1.15em; margin-bottom: 5px; }
+.aviso-legal { background: #FFD700; border: 4px dashed #FF8C00; border-radius: 16px; padding: 20px; font-size: 1.1em; font-weight: bold; color: #8B4500; margin-top: 10px; }
+.seguranca { background: #FADBD8; border: 3px dashed #E74C3C; padding: 15px; border-radius: 16px; margin-top: 15px; font-size: 1.1em; font-weight: bold; color: #922B21; width: 100%; }
+.btn-modelo-diferente { background: #F39C12; color: #fff; border: none; border-radius: 10px; padding: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer; margin: 15px 0; width: 100%; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.conteudo-paralelo { display: none; background: #FEF9E7; border: 2px solid #F39C12; border-radius: 12px; padding: 15px; width: 100%; text-align: left; margin-bottom: 20px; }
+.conteudo-paralelo.ativo { display: block; }
+.conteudo-paralelo h3 { color: #D35400; font-size: 1.1em; margin-bottom: 10px; text-align: center; }
+.conteudo-paralelo p { font-size: 1em; font-weight: normal; margin-bottom: 8px; }
+.lista-indice { width: 100%; display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+.lista-indice button { background: #EBF5FB; border: 3px solid #2E86C1; padding: 12px; border-radius: 15px; font-size: 1.1em; font-weight: bold; color: #1B4F72; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 15px; }
+.lista-indice button span { font-size: 1.5em; }
+.barra-navegacao { display: flex; background: #f8f9fa; border-top: 2px solid #dee2e6; padding: 12px; gap: 10px; }
+.btn-nav { flex: 1; padding: 15px; border: none; border-radius: 15px; font-size: 1.2em; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 5px; }
+.btn-voltar { background: #BDC3C7; color: #333; }
+.btn-avancar { background: #2E86C1; color: #fff; }
+.btn-desativado { opacity: 0.5; pointer-events: none; }
+.bloco-ajuda-capa { width: 100%; background: #E8F8F5; border: 4px solid #25D366; border-radius: 16px; padding: 15px; margin-top: 20px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.bloco-ajuda-capa h3 { color: #128C7E; font-size: 1.2em; margin-bottom: 5px; }
+.numero-destaque { font-size: 2em; font-weight: 900; color: #2E86C1; margin: 10px 0; letter-spacing: 2px; }
+.btn-copiar { background-color: #25D366; color: white; text-decoration: none; padding: 12px; border-radius: 10px; font-size: 1.1em; font-weight: bold; display: inline-block; width: 100%; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border: none; cursor: pointer; }
+.acessibilidade { position: absolute; top: 70px; right: 10px; z-index: 999; display: flex; flex-direction: column; gap: 5px; }
+.acessibilidade button { background: #34495E; color: #fff; border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 1em; font-weight: bold; cursor: pointer; opacity: 0.8; }
+</style>
 </head>
 <body>
-    <div class="livro-container">
-        <div class="barra-topo">
-            <button class="btn-indice" onclick="irParaPagina(0); pararAudio();">🏠 Início</button>
-            <span id="contador">Capa</span>
-        </div>
-
-        <div class="paginas-wrapper">
-            <!-- PÁGINA 0: CAPA -->
-            <div class="pagina ativa" id="pagina-0">
-                <div class="casal-container">
-                    <span class="casal-icon">👴🏽</span>
-                    <span class="casal-icon">👵🏽</span>
-                </div>
-                <h1>Guia Fácil do Celular</h1>
-                <p>Toque em um assunto para aprender:</p>
-                <div class="lista-indice">
-                    <button onclick="irParaPagina(1); pararAudio();"><span>⚙️</span> 1. Deixar a letra grande</button>
-                    <button onclick="irParaPagina(2); pararAudio();"><span>📹</span> 2. Ver os netos por vídeo</button>
-                    <button onclick="irParaPagina(3); pararAudio();"><span>🎤</span> 3. Mandar mensagem de voz</button>
-                    <button onclick="irParaPagina(4); pararAudio();"><span>🚨</span> 4. Cuidado com Golpes!</button>
-                </div>
-                <div class="bloco-ajuda-capa">
-                    <h3>💬 Precisa de Ajuda?</h3>
-                    <p style="font-size: 0.9em; font-weight: normal; margin-bottom: 5px;">Ligue para o orientador:</p>
-                    <div class="numero-destaque" id="numero-contato">(61) 99975-8262</div>
-                    <button class="btn-copiar" onclick="copiarNumero()">📋 Copiar Número</button>
-                </div>
-            </div>
-
-            <!-- PÁGINA 1 (Engrenagem) -->
-            <div class="pagina" id="pagina-1">
-                <h2>1. Deixar a letra grande</h2>
-                <button class="btn-ouvir" onclick="falarTexto('pagina-1')">🔊 Ouvir Explicação</button>
-                
-                <!-- MOCKUP DA TELA DO CELULAR -->
-                <div class="mockup-celular mockup-tela-1">
-                    <div class="seta-apontando">👇</div>
-                    <div class="icone-config">⚙️</div>
-                    <div style="font-size:12px; text-align:center; font-weight:bold;">Configurações</div>
-                </div>
-
-                <div class="passo"><span class="passo-num">1</span> Na tela inicial, aperte na <strong>engrenagem</strong> <span class="passo-icone">⚙️</span></div>
-                <div class="passo"><span class="passo-num">2</span> Procure e aperte em <strong>"Tela"</strong> <span class="passo-icone">📱</span></div>
-                <div class="passo"><span class="passo-num">3</span> Aperte em <strong>"Tamanho da fonte"</strong> <span class="passo-icone">🔤</span></div>
-                
-                <button class="btn-modelo-diferente" onclick="alternarModelo()">📱 Meu celular é diferente</button>
-                <div class="conteudo-paralelo" id="modo-paralelo">
-                    <h3>Se não achar "Tela", tente:</h3>
-                    <p><strong>Samsung:</strong> Aperte em <em>"Visor"</em>.</p>
-                    <p><strong>Xiaomi/Motorola:</strong> Procure <em>"Tela e brilho"</em>.</p>
-                    <p><strong>iPhone:</strong> Aperte em <em>"Acessibilidade"</em>.</p>
-                </div>
-                <div class="texto-oculto" style="display:none;">Na tela inicial do celular, procure o desenho de uma engrenagem cinza e aperte nela. Depois, procure a palavra Tela. Em seguida, aperte em Tamanho da fonte. Por fim, puxe a bolinha para o lado direito.</div>
-            </div>
-
-            <!-- PÁGINA 2 (WhatsApp) -->
-            <div class="pagina" id="pagina-2">
-                <h2>2. Ver os netos por vídeo</h2>
-                <button class="btn-ouvir" onclick="falarTexto('pagina-2')">🔊 Ouvir Explicação</button>
-                
-                <!-- MOCKUP DO WHATSAPP -->
-                <div class="mockup-celular mockup-tela-2">
-                    <div class="topo-zap">
-                        <span>Maria (Mãe)</span>
-                        <span class="btn-camera-zap" style="box-shadow: 0 0 0 4px #FFD700; border-radius: 50%;">📹</span>
-                    </div>
-                    <div class="area-batepapo">
-                        <p style="margin-bottom:10px;">Oi mãe, tudo bem?</p>
-                        <p style="background:#dcf8c6; padding:5px; border-radius:5px; width:fit-content; margin-left:auto;">Tudo ótimo filho!</p>
-                    </div>
-                </div>
-
-                <div class="passo"><span class="passo-num">1</span> Abra o <strong>WhatsApp</strong> <span class="passo-icone">💬</span></div>
-                <div class="passo"><span class="passo-num">2</span> Aperte no <strong>nome</strong> da pessoa <span class="passo-icone">👤</span></div>
-                <div class="passo"><span class="passo-num">3</span> Lá em cima, aperte na <strong>câmera</strong> <span class="passo-icone">📹</span></div>
-                
-                <div class="seguranca">⚠️ Só ligue para quem você <strong>conhece</strong>.</div>
-                <div class="texto-oculto" style="display:none;">Para ver seus netos, abra o aplicativo WhatsApp. Aperte no nome da pessoa. Lá no topo da conversa, aperte no desenho da câmera. Espere a pessoa atender.</div>
-            </div>
-
-            <!-- PÁGINA 3 (Microfone) -->
-            <div class="pagina" id="pagina-3">
-                <h2>3. Mandar mensagem de voz</h2>
-                <button class="btn-ouvir" onclick="falarTexto('pagina-3')">🔊 Ouvir Explicação</button>
-                
-                <!-- MOCKUP DO BATE-PAPO COM MICROFONE -->
-                <div class="mockup-celular mockup-tela-3">
-                    <div class="barra-digitacao">
-                        <span style="font-size: 18px; color: #999;">😊</span>
-                        <span style="font-size: 14px; color: #999; flex:1; margin-left:10px;">Digite...</span>
-                        <span class="icone-microfone">🎤</span>
-                    </div>
-                </div>
-
-                <div class="passo"><span class="passo-num">1</span> Abra a conversa <span class="passo-icone">💬</span></div>
-                <div class="passo"><span class="passo-num">2</span> <strong>Segure</strong> o botão do <strong>microfone</strong> <span class="passo-icone">🎤</span></div>
-                <div class="passo"><span class="passo-num">3</span> Fale e <strong>solte</strong> para enviar <span class="passo-icone">👆</span></div>
-                <div class="texto-oculto" style="display:none;">Abra a conversa com a pessoa. Encontre o botão do microfone, lá embaixo no lado direito. Segure o dedo nele e fale. Quando terminar, tire o dedo da tela.</div>
-            </div>
-
-            <!-- PÁGINA 4 (Golpes) -->
-            <div class="pagina" id="pagina-4">
-                <h2>4. Cuidado com Golpes!</h2>
-                <button class="btn-ouvir" onclick="falarTexto('pagina-4')">🔊 Ouvir Explicação</button>
-                
-                <!-- MOCKUP DE ALERTA DE GOLPE -->
-                <div class="mockup-celular mockup-tela-4">
-                    <div class="alerta-golpe">🚨</div>
-                    <div class="texto-golpe">ALERTA DE GOLPE!</div>
-                    <p style="font-size: 10px; margin-top: 10px; text-align: center;">Se alguém ligar pedindo sua senha, desligue na hora!</p>
-                </div>
-
-                <div class="passo" style="background: #FADBD8; border-left-color: #E74C3C;"><span class="passo-num" style="background: #E74C3C;">❌</span> Se pedirem <strong>senha</strong> ou PIX, <strong>DESLIGUE!</strong></div>
-                <div class="passo" style="background: #D5F5E3; border-left-color: #2ECC71;"><span class="passo-num" style="background: #2ECC71;">✅</span> Ligue você mesmo para o <strong>banco</strong> <span class="passo-icone">📞</span></div>
-                
-                <div class="aviso-legal">🛑 Nós NUNCA pedimos sua senha ou dinheiro.</div>
-                <div class="texto-oculto" style="display:none;">Muito cuidado com golpes. Se alguém ligar pedindo sua senha ou pedindo para fazer um PIX, desligue na hora. Se for do banco, ligue você mesmo para o número do cartão.</div>
-            </div>
-
-        </div>
-
-        <div class="barra-navegacao">
-            <button class="btn-nav btn-voltar" id="btn-voltar" onclick="mudarPagina(-1)">⬅️ Voltar</button>
-            <button class="btn-nav btn-avancar" id="btn-avancar" onclick="mudarPagina(1)">Avançar ➡️</button>
-        </div>
-    </div>
-
-    <script>
-        let paginaAtual = 0;
-        // Como agora temos 5 páginas (0 a 4), precisamos ajustar o total
-        const totalPaginas = document.querySelectorAll('.pagina').length - 1;
-        const paginas = document.querySelectorAll('.pagina');
-        const contador = document.getElementById('contador');
-        const btnVoltar = document.getElementById('btn-voltar');
-        const btnAvancar = document.getElementById('btn-avancar');
-
-        function irParaPagina(index) {
-            paginas.forEach(p => p.classList.remove('ativa'));
-            paginaAtual = index;
-            document.getElementById('pagina-' + paginaAtual).classList.add('ativa');
-            atualizarBotoes();
-            pararAudio();
-            document.getElementById('modo-paralelo').classList.remove('ativo'); 
-        }
-
-        function mudarPagina(direcao) {
-            const novaPagina = paginaAtual + direcao;
-            if (novaPagina >= 0 && novaPagina <= totalPaginas) {
-                irParaPagina(novaPagina);
-            }
-        }
-
-        function atualizarBotoes() {
-            if (paginaAtual === 0) {
-                contador.innerText = "Capa / Índice";
-                btnVoltar.classList.add('btn-desativado');
-            } else {
-                contador.innerText = "Página " + paginaAtual + " de " + totalPaginas;
-                btnVoltar.classList.remove('btn-desativado');
-            }
-
-            if (paginaAtual === totalPaginas) {
-                btnAvancar.classList.add('btn-desativado');
-            } else {
-                btnAvancar.classList.remove('btn-desativado');
-            }
-        }
-
-        let tamanhoAtual = 16;
-        const MIN = 14;
-        const MAX = 24;
-
-        function aumentarLetra() {
-            if (tamanhoAtual < MAX) {
-                tamanhoAtual += 2;
-                document.body.style.fontSize = tamanhoAtual + 'px';
-            }
-        }
-
-        function diminuirLetra() {
-            if (tamanhoAtual > MIN) {
-                tamanhoAtual -= 2;
-                document.body.style.fontSize = tamanhoAtual + 'px';
-            }
-        }
-
-        let sintese = window.speechSynthesis;
-
-        function falarTexto(idPagina) {
-            if (sintese.speaking) {
-                sintese.cancel();
-                return;
-            }
-            const pagina = document.getElementById(idPagina);
-            const textoParaLer = pagina.querySelector('.texto-oculto').innerText;
-            const utterThis = new SpeechSynthesisUtterance(textoParaLer);
-            utterThis.lang = 'pt-BR'; 
-            utterThis.rate = 0.9; 
-            sintese.speak(utterThis);
-        }
-
-        function pararAudio() {
-            if (sintese.speaking) {
-                sintese.cancel();
-            }
-        }
-
-        function alternarModelo() {
-            const painel = document.getElementById('modo-paralelo');
-            painel.classList.toggle('ativo');
-        }
-
-        function copiarNumero() {
-            const numero = document.getElementById('numero-contato').innerText;
-            navigator.clipboard.writeText(numero).then(() => {
-                alert("Número copiado! Agora você pode colar no seu WhatsApp.");
-            }).catch(err => {
-                alert("Não foi possível copiar. Por favor, anote o número: (61) 99975-8262");
-            });
-        }
-
-        atualizarBotoes();
-    </script>
+<div class="livro-container">
+<div class="barra-topo">
+<button class="btn-indice" onclick="irParaPagina(0); pararAudio();">🏠 Início</button>
+<span id="contador">Capa</span>
+</div>
+<div class="acessibilidade">
+<button onclick="aumentarLetra()" title="Aumentar letra">A+</button>
+<button onclick="diminuirLetra()" title="Diminuir letra">A-</button>
+</div>
+<div class="paginas-wrapper">
+<div class="pagina ativa" id="pagina-0">
+<div class="casal-container"><span class="casal-icon">👴🏽</span><span class="casal-icon">👵🏽</span></div>
+<h1>Guia Fácil do Celular</h1>
+<p>Toque em um assunto para aprender:</p>
+<div class="lista-indice">
+<button onclick="irParaPagina(1); pararAudio();"><span>🔍</span> 1. Deixar a letra grande</button>
+<button onclick="irParaPagina(2); pararAudio();"><span>📹</span> 2. Ver os netos por vídeo</button>
+<button onclick="irParaPagina(3); pararAudio();"><span>🎤</span> 3. Mandar mensagem de voz</button>
+<button onclick="irParaPagina(4); pararAudio();"><span>🚨</span> 4. Cuidado com Golpes!</button>
+<button onclick="irParaPagina(5); pararAudio();"><span>📦</span> 5. Golpe da encomenda</button>
+<button onclick="irParaPagina(6); pararAudio();"><span>🚫</span> 6. Bloquear chato</button>
+</div>
+<div class="bloco-ajuda-capa">
+<h3>💬 Precisa de Ajuda?</h3>
+<p style="font-size: 1em; font-weight: normal; margin-bottom: 5px;">Ligue ou mande mensagem para o orientador do projeto:</p>
+<div class="numero-destaque" id="numero-contato">(61) 99975-8262</div>
+<button class="btn-copiar" onclick="copiarNumero()">📋 Toque para Copiar o Número</button>
+</div>
+</div>
+<div class="pagina" id="pagina-1">
+<img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Idosa com celular na mão" class="imagem-ilustrativa">
+<h2>1. Deixar a letra grande</h2>
+<button class="btn-ouvir" onclick="falarTexto('pagina-1')">🔊 Ouvir Explicação</button>
+<p style="font-size:1em;">👆 Toque em cada passo para ver como é na tela:</p>
+<div class="passo" onclick="mostrarDemo(this,'demo-1-1')"><span class="passo-num">1</span> Abra a <strong>engrenagem</strong> <span class="passo-icone">⚙️</span></div>
+<div class="demo" id="demo-1-1">
+<img src="velhinho.jpg" alt="Velhinho tocando na engrenagem" class="imagem-demo" onerror="this.style.display='none'">
+<span class="icone-gigante">⚙️</span>
+<p><strong>É essa engrenagem aqui!</strong><br>Toque nela para abrir as Configurações.</p>
+</div>
+<div class="passo" onclick="mostrarDemo(this,'demo-1-2')"><span class="passo-num">2</span> Aperte em <strong>"Tela"</strong> <span class="passo-icone">📱</span></div>
+<div class="demo" id="demo-1-2"><span class="icone-gigante">📱</span><p><strong>Procure a palavra Tela.</strong><br>É onde muda o brilho e a letra.</p></div>
+<div class="passo" onclick="mostrarDemo(this,'demo-1-3')"><span class="passo-num">3</span> Aperte em <strong>"Letra"</strong> <span class="passo-icone">🔤</span></div>
+<div class="demo" id="demo-1-3"><span class="icone-gigante">🔤</span><p><strong>Aperte em Letra.</strong><br>Vai aparecer a bolinha para puxar.</p></div>
+<div class="passo" onclick="mostrarDemo(this,'demo-1-4')"><span class="passo-num">4</span> Puxe a bolinha para o <strong>lado direito</strong> <span class="passo-icone">➡️</span></div>
+<div class="demo" id="demo-1-4"><span class="icone-gigante">➡️</span><p><strong>Puxe para a direita.</strong><br>Quanto mais para a direita, maior a letra.</p></div>
+<button class="btn-modelo-diferente" onclick="alternarModelo()">📱 Meu celular é diferente</button>
+<div class="conteudo-paralelo" id="modo-paralelo">
+<h3>Se você não achou "Tela", tente assim:</h3>
+<p><strong> Samsung:</strong> Aperte em <em>"Visor"</em> ou <em>"Tela e luz"</em>.</p>
+<p><strong> Xiaomi/ Motorola:</strong> Aperte em <em>"Tela de bloqueio"</em> e depois <em>"Letra"</em>. Ou procure <em>"Tela e brilho"</em>.</p>
+<p><strong>iPhone (Apple):</strong> Aperte em <em>"Acessibilidade"</em>, depois em <em>"Tela e Tamanho do Texto"</em>.</p>
+</div>
+<div class="texto-oculto" style="display:none;">Para deixar a letra grande, primeiro abra o aplicativo de configurações, que parece uma engrenagem. Depois, aperte na palavra Tela. Em seguida, aperte em Letra. Por fim, puxe a bolinha para o lado direito até ficar do tamanho que você gosta.</div>
+</div>
+<div class="pagina" id="pagina-2">
+<img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Idosa em chamada de vídeo" class="imagem-ilustrativa">
+<h2>2. Ver os netos por vídeo</h2>
+<button class="btn-ouvir" onclick="falarTexto('pagina-2')">🔊 Ouvir Explicação</button>
+<div class="passo" onclick="mostrarDemo(this,'demo-2-1')"><span class="passo-num">1</span> Abra o <strong>WhatsApp</strong> <span class="passo-icone">💬</span></div>
+<div class="demo" id="demo-2-1"><span class="icone-gigante">💬</span><p><strong>É o balãozinho verde.</strong><br>Toque nele para abrir.</p></div>
+<div class="passo" onclick="mostrarDemo(this,'demo-2-2')"><span class="passo-num">2</span> Aperte no <strong>nome</strong> <span class="passo-icone">👤</span></div>
+<div class="demo" id="demo-2-2"><span class="icone-gigante">👤</span><p><strong>Aperte no nome da pessoa.</strong><br>Exemplo: neto, filho, amiga.</p></div>
+<div class="passo" onclick="mostrarDemo(this,'demo-2-3')"><span class="passo-num">3</span> Aperte na <strong>câmera</strong> <span class="passo-icone">📹</span></div>
+<div class="demo" id="demo-2-3"><span class="icone-gigante">📹</span><p><strong>É essa camerazinha lá em cima.</strong><br>Toque nela para ligar com vídeo.</p></div>
+<div class="passo" onclick="mostrarDemo(this,'demo-2-4')"><span class="passo-num">4</span> Espere atender! <span class="passo-icone">⏳</span></div>
+<div class="demo" id="demo-2-4"><span class="icone-gigante">⏳</span><p><strong>Agora é só esperar.</strong><br>Quando atender, você vai ver a pessoa.</p></div>
+<div class="seguranca">⚠️ Só ligue para quem você <strong>conhece</strong>.</div>
+<div class="texto-oculto" style="display:none;">Para ver seus netos por vídeo, abra o aplicativo WhatsApp, que tem o desenho de um balão verde. Aperte no nome da pessoa. No canto de cima, aperte no desenho da câmera. Agora é só esperar a pessoa atender. Mas atenção: só ligue para quem você realmente conhece.</div>
+</div>
+<div class="pagina" id="pagina-3">
+<img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Mão segurando celular" class="imagem-ilustrativa">
+<h2>3. Mandar mensagem de voz</h2>
+<button class="btn-ouvir" onclick="falarTexto('pagina-3')">🔊 Ouvir Explicação</button>
+<div class="passo" onclick="mostrarDemo(this,'demo-3-1')"><span class="passo-num">1</span> Abra a conversa <span class="passo-icone">💬</span></div>
+<div class="demo" id="demo-3-1"><span class="icone-gigante">💬</span><p><strong>Abra a conversa da pessoa.</strong></p></div>
+<div class="passo" onclick="mostrarDemo(this,'demo-3-2')"><span class="passo-num">2</span> <strong>Segure</strong> o <strong>microfone</strong> <span class="passo-icone">🎤</span></div>
+<div class="demo" id="demo-3-2"><span class="icone-gigante">🎤</span><p><strong>Segure o dedo aqui, sem soltar.</strong><br>Fale normalmente.</p></div>
+<div class="passo" onclick="mostrarDemo(this,'demo-3-3')"><span class="passo-num">3</span> Fale e <strong>solte</strong> para enviar <span class="passo-icone">👆</span></div>
+<div class="demo" id="demo-3-3"><span class="icone-gigante">👆</span><p><strong>Terminou? Tire o dedo.</strong><br>Pronto, a voz já foi enviada.</p></div>
+<div class="texto-oculto" style="display:none;">Para mandar uma mensagem de voz, abra a conversa com a pessoa. Encontre o botão do microfone, lá embaixo no lado direito. Segure o dedo nesse botão e fale normalmente. Quando terminar de falar, apenas tire o dedo da tela para a mensagem ser enviada.</div>
+</div>
+<div class="pagina" id="pagina-4">
+<img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Pessoa segurando cartão" class="imagem-ilustrativa">
+<h2>4. Cuidado com Golpes!</h2>
+<button class="btn-ouvir" onclick="falarTexto('pagina-4')">🔊 Ouvir Explicação</button>
+<div class="passo" style="background: #FADBD8; border-left-color: #E74C3C;" onclick="mostrarDemo(this,'demo-4-1')"><span class="passo-num" style="background: #E74C3C;">❌</span> Se pedirem <strong>senha</strong> ou PIX, <strong>DESLIGUE!</strong></div>
+<div class="demo" id="demo-4-1"><span class="icone-gigante">🛑</span><p><strong>Pediu senha ou PIX? Desligue na hora.</strong></p></div>
+<div class="passo" style="background: #D5F5E3; border-left-color: #2ECC71;" onclick="mostrarDemo(this,'demo-4-2')"><span class="passo-num" style="background: #2ECC71;">✅</span> Ligue você mesmo para o <strong>banco</strong> <span class="passo-icone">📞</span></div>
+<div class="demo" id="demo-4-2"><span class="icone-gigante">📞</span><p><strong>Ligue você mesmo.</strong><br>Use o número que fica atrás do seu cartão.</p></div>
+<div class="aviso-legal">🛑 Nós NUNCA pedimos sua senha ou dinheiro.</div>
+<div class="texto-oculto" style="display:none;">Muito cuidado com golpes. Se alguém ligar pedindo sua senha ou pedindo para fazer um PIX, desligue na hora. Se for realmente do banco, pegue o seu cartão e ligue você mesmo para o número que fica no verso do cartão. E lembre-se: nós nunca pedimos sua senha ou dinheiro.</div>
+</div>
+<div class="pagina" id="pagina-5">
+<img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Alerta no celular" class="imagem-ilustrativa">
+<h2>5. Golpe da encomenda</h2>
+<button class="btn-ouvir" onclick="falarTexto('pagina-5')">🔊 Ouvir Explicação</button>
+<div class="passo" style="background: #FADBD8; border-left-color: #E74C3C;" onclick="mostrarDemo(this,'demo-5-1')"><span class="passo-num" style="background: #E74C3C;">❌</span> Se disserem que tem <strong>encomenda parada</strong>, <strong>NÃO CLIQUE!</strong></div>
+<div class="demo" id="demo-5-1"><span class="icone-gigante">📦</span><p><strong>Não clique no link!</strong><br>É golpe para roubar seus dados.</p></div>
+<div class="passo" onclick="mostrarDemo(this,'demo-5-2')"><span class="passo-num">🗑️</span> Apague a mensagem na hora <span class="passo-icone">📵</span></div>
+<div class="demo" id="demo-5-2"><span class="icone-gigante">🗑️</span><p><strong>Apague na hora.</strong><br>Não responde, não clica, só apaga.</p></div>
+<div class="texto-oculto" style="display:none;">Existe um golpe muito comum sobre encomendas. Se chegar uma mensagem no seu celular dizendo que você tem uma encomenda parada e mandar um link, não clique nesse link de jeito nenhum. Apenas apague a mensagem na hora.</div>
+</div>
+<div class="pagina" id="pagina-6">
+<img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Idosa tranquila com o celular" class="imagem-ilustrativa">
+<h2>6. Bloquear chato</h2>
+<button class="btn-ouvir" onclick="falarTexto('pagina-6')">🔊 Ouvir Explicação</button>
+<div class="passo" onclick="mostrarDemo(this,'demo-6-1')"><span class="passo-num">1</span> Abra a conversa <span class="passo-icone">💬</span></div>
+<div class="demo" id="demo-6-1"><span class="icone-gigante">💬</span><p><strong>Abra a conversa da pessoa chata.</strong></p></div>
+<div class="passo" onclick="mostrarDemo(this,'demo-6-2')"><span class="passo-num">2</span> Aperte nos <strong>três pontinhos</strong> <span class="passo-icone">⋮</span></div>
+<div class="demo" id="demo-6-2"><span class="icone-gigante">⋮</span><p><strong>São esses três pontinhos lá em cima.</strong><br>Toque neles.</p></div>
+<div class="passo" onclick="mostrarDemo(this,'demo-6-3')"><span class="passo-num">3</span> Aperte em <strong>Bloquear</strong> <span class="passo-icone">🚫</span></div>
+<div class="demo" id="demo-6-3"><span class="icone-gigante">🚫</span><p><strong>Aperte em Bloquear.</strong><br>Pronto, a pessoa não te incomoda mais.</p></div>
+<div class="texto-oculto" style="display:none;">Para bloquear um número chato, abra a conversa com essa pessoa. No canto de cima, aperte nos três pontinhos. No menu que abrir, aperte na palavra Bloquear. Assim você não recebe mais mensagens dessa pessoa.</div>
+</div>
+</div>
+<div class="barra-navegacao">
+<button class="btn-nav btn-voltar" id="btn-voltar" onclick="mudarPagina(-1)">⬅️ Voltar</button>
+<button class="btn-nav btn-avancar" id="btn-avancar" onclick="mudarPagina(1)">Avançar ➡️</button>
+</div>
+</div>
+<script>
+let paginaAtual = 0;
+const totalPaginas = document.querySelectorAll('.pagina').length - 1;
+const paginas = document.querySelectorAll('.pagina');
+const contador = document.getElementById('contador');
+const btnVoltar = document.getElementById('btn-voltar');
+const btnAvancar = document.getElementById('btn-avancar');
+function irParaPagina(index) {
+paginas.forEach(p => p.classList.remove('ativa'));
+paginaAtual = index;
+document.getElementById('pagina-' + paginaAtual).classList.add('ativa');
+atualizarBotoes();
+pararAudio();
+document.getElementById('modo-paralelo').classList.remove('ativo');
+document.querySelectorAll('.demo').forEach(d => d.classList.remove('ativo'));
+document.querySelectorAll('.passo').forEach(p => p.classList.remove('ativo'));
+}
+function mudarPagina(direcao) {
+const novaPagina = paginaAtual + direcao;
+if (novaPagina >= 0 && novaPagina <= totalPaginas) { irParaPagina(novaPagina); }
+}
+function atualizarBotoes() {
+if (paginaAtual === 0) { contador.innerText = "Capa / Índice"; btnVoltar.classList.add('btn-desativado'); }
+else { contador.innerText = "Página " + paginaAtual + " de " + totalPaginas; btnVoltar.classList.remove('btn-desativado'); }
+if (paginaAtual === totalPaginas) { btnAvancar.classList.add('btn-desativado'); } else { btnAvancar.classList.remove('btn-desativado'); }
+}
+function mostrarDemo(passoClicado, idDemo) {
+const demo = document.getElementById(idDemo);
+const jaAberto = demo.classList.contains('ativo');
+document.querySelectorAll('.demo').forEach(d => d.classList.remove('ativo'));
+document.querySelectorAll('.passo').forEach(p => p.classList.remove('ativo'));
+if (!jaAberto) { demo.classList.add('ativo'); passoClicado.classList.add('ativo'); }
+}
+let tamanhoAtual = 16; const MIN = 14; const MAX = 24;
+function aumentarLetra() { if (tamanhoAtual < MAX) { tamanhoAtual += 2; document.body.style.fontSize = tamanhoAtual + 'px'; } }
+function diminuirLetra() { if (tamanhoAtual > MIN) { tamanhoAtual -= 2; document.body.style.fontSize = tamanhoAtual + 'px'; } }
+let sintese = window.speechSynthesis;
+function falarTexto(idPagina) {
+if (sintese.speaking) { sintese.cancel(); return; }
+const pagina = document.getElementById(idPagina);
+const textoParaLer = pagina.querySelector('.texto-oculto').innerText;
+const utterThis = new SpeechSynthesisUtterance(textoParaLer);
+utterThis.lang = 'pt-BR'; utterThis.rate = 0.9; sintese.speak(utterThis);
+}
+function pararAudio() { if (sintese.speaking) { sintese.cancel(); } }
+function alternarModelo() { const painel = document.getElementById('modo-paralelo'); painel.classList.toggle('ativo'); }
+function copiarNumero() {
+const numero = document.getElementById('numero-contato').innerText;
+navigator.clipboard.writeText(numero).then(() => { alert("Número copiado! Agora você pode colar no seu WhatsApp."); }).catch(err => { alert("Não foi possível copiar. Por favor, anote o número: (61) 99975-8262"); });
+}
+atualizarBotoes();
+</script>
 </body>
 </html>
