@@ -77,6 +77,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            padding-bottom: 80px;
         }
 
         .pagina.ativa {
@@ -98,15 +99,15 @@
         h2 { font-size: 1.6em; color: #2E86C1; margin-bottom: 15px; font-weight: 900; }
         p { font-size: 1.2em; margin-bottom: 15px; font-weight: bold; }
 
-        /* NOVO: IMAGEM REDONDA NO LUGAR DO EMOJI */
+        /* NOVO: IMAGEM ILUSTRATIVA GARANTIDA */
         .imagem-ilustrativa {
-            width: 140px;
-            height: 140px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid #2E86C1;
+            border: 6px solid #2E86C1;
             margin-bottom: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
         }
 
         /* BOTÃO OUVIR */
@@ -129,9 +130,10 @@
         }
         .btn-ouvir:active { background: #6C3483; }
 
+        /* PASSOS COM VISUAL MELHORADO */
         .passo {
             font-size: 1.1em;
-            margin: 8px 0;
+            margin: 10px 0;
             padding: 15px;
             background: #E8F8F5;
             border-radius: 16px;
@@ -147,12 +149,17 @@
             background: #28B463;
             color: #fff;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            font-size: 1.2em;
+        }
+        .passo-icone {
+            font-size: 1.5em;
+            margin-left: auto;
         }
 
         .aviso-legal {
@@ -183,13 +190,14 @@
             color: #fff;
             border: none;
             border-radius: 10px;
-            padding: 10px;
-            font-size: 1em;
+            padding: 12px;
+            font-size: 1.1em;
             font-weight: bold;
             cursor: pointer;
             margin: 15px 0;
             width: 100%;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         .conteudo-paralelo {
             display: none;
@@ -347,7 +355,6 @@
                     <button onclick="irParaPagina(6); pararAudio();"><span>🚫</span> 6. Bloquear chato</button>
                 </div>
 
-                <!-- BLOCO DE AJUDA TOTALMENTE SEGURO -->
                 <div class="bloco-ajuda-capa">
                     <h3>💬 Precisa de Ajuda?</h3>
                     <p style="font-size: 1em; font-weight: normal; margin-bottom: 5px;">Ligue ou mande mensagem para o orientador do projeto:</p>
@@ -358,15 +365,15 @@
 
             <!-- PÁGINA 1 (Aumentar Letra) -->
             <div class="pagina" id="pagina-1">
-                <!-- Imagem ilustrativa: Idosa olhando para o celular -->
-                <img src="https://images.unsplash.com/photo-1586105251261-72a756497a11?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Idosa usando o celular" class="imagem-ilustrativa">
+                <!-- Imagem corrigida: Idosa sorrindo com o celular na mão -->
+                <img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Idosa com celular na mão" class="imagem-ilustrativa">
                 <h2>1. Deixar a letra grande</h2>
                 <button class="btn-ouvir" onclick="falarTexto('pagina-1')">🔊 Ouvir Explicação</button>
                 
-                <div class="passo"><span class="passo-num">1</span> Abra a <strong>engrenagem</strong> ⚙️.</div>
-                <div class="passo"><span class="passo-num">2</span> Aperte em <strong>"Tela"</strong>.</div>
-                <div class="passo"><span class="passo-num">3</span> Aperte em <strong>"Letra"</strong>.</div>
-                <div class="passo"><span class="passo-num">4</span> Puxe a bolinha para o <strong>lado direito</strong> ➡️.</div>
+                <div class="passo"><span class="passo-num">1</span> Abra a <strong>engrenagem</strong> <span class="passo-icone">⚙️</span></div>
+                <div class="passo"><span class="passo-num">2</span> Aperte em <strong>"Tela"</strong> <span class="passo-icone">📱</span></div>
+                <div class="passo"><span class="passo-num">3</span> Aperte em <strong>"Letra"</strong> <span class="passo-icone">🔤</span></div>
+                <div class="passo"><span class="passo-num">4</span> Puxe a bolinha para o <strong>lado direito</strong> <span class="passo-icone">➡️</span></div>
                 
                 <button class="btn-modelo-diferente" onclick="alternarModelo()">📱 Meu celular é diferente</button>
                 
@@ -377,67 +384,77 @@
                     <p><strong>iPhone (Apple):</strong> Aperte em <em>"Acessibilidade"</em>, depois em <em>"Tela e Tamanho do Texto"</em>.</p>
                 </div>
 
-                <div class="texto-oculto" style="display:none;">Para deixar a letra grande, primeiro abra o aplicativo de configurações, que parece uma engrenagem. Depois, aperte na palavra Tela. Em seguida, aperte em Letra. Por fim, puxe a bolinha para o lado direito até ficar do tamanho que você gosta. Se o seu celular for diferente e você não achar a palavra Tela, procure por Visor, Tela e brilho, ou Acessibilidade.</div>
+                <div class="texto-oculto" style="display:none;">Para deixar a letra grande, primeiro abra o aplicativo de configurações, que parece uma engrenagem. Depois, aperte na palavra Tela. Em seguida, aperte em Letra. Por fim, puxe a bolinha para o lado direito até ficar do tamanho que você gosta.</div>
             </div>
 
             <!-- PÁGINA 2 (Ver netos por vídeo) -->
             <div class="pagina" id="pagina-2">
-                <!-- Imagem ilustrativa: Idoso em chamada de vídeo -->
-                <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Idoso em chamada de vídeo" class="imagem-ilustrativa">
+                <!-- Imagem corrigida: Idoso em chamada de vídeo -->
+                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Idosa em chamada de vídeo" class="imagem-ilustrativa">
                 <h2>2. Ver os netos por vídeo</h2>
                 <button class="btn-ouvir" onclick="falarTexto('pagina-2')">🔊 Ouvir Explicação</button>
-                <div class="passo"><span class="passo-num">1</span> Abra o <strong>WhatsApp</strong> verde.</div>
-                <div class="passo"><span class="passo-num">2</span> Aperte no <strong>nome</strong> da pessoa.</div>
-                <div class="passo"><span class="passo-num">3</span> Aperte na <strong>câmera</strong> 📷 em cima.</div>
-                <div class="passo"><span class="passo-num">4</span> Espere ela atender!</div>
+                
+                <div class="passo"><span class="passo-num">1</span> Abra o <strong>WhatsApp</strong> <span class="passo-icone">💬</span></div>
+                <div class="passo"><span class="passo-num">2</span> Aperte no <strong>nome</strong> <span class="passo-icone">👤</span></div>
+                <div class="passo"><span class="passo-num">3</span> Aperte na <strong>câmera</strong> <span class="passo-icone">📹</span></div>
+                <div class="passo"><span class="passo-num">4</span> Espere atender! <span class="passo-icone">⏳</span></div>
+                
                 <div class="seguranca">⚠️ Só ligue para quem você <strong>conhece</strong>.</div>
                 <div class="texto-oculto" style="display:none;">Para ver seus netos por vídeo, abra o aplicativo WhatsApp, que tem o desenho de um balão verde. Aperte no nome da pessoa. No canto de cima, aperte no desenho da câmera. Agora é só esperar a pessoa atender. Mas atenção: só ligue para quem você realmente conhece.</div>
             </div>
 
             <!-- PÁGINA 3 (Mensagem de voz) -->
             <div class="pagina" id="pagina-3">
-                <!-- Imagem ilustrativa: Mãos de idoso segurando o celular -->
-                <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Mãos segurando celular" class="imagem-ilustrativa">
+                <!-- Imagem corrigida: Mão de idoso segurando celular -->
+                <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Mão segurando celular" class="imagem-ilustrativa">
                 <h2>3. Mandar mensagem de voz</h2>
                 <button class="btn-ouvir" onclick="falarTexto('pagina-3')">🔊 Ouvir Explicação</button>
-                <div class="passo"><span class="passo-num">1</span> Abra a conversa.</div>
-                <div class="passo"><span class="passo-num">2</span> <strong>Segure</strong> o botão do <strong>microfone</strong> e fale.</div>
-                <div class="passo"><span class="passo-num">3</span> Tire o dedo da tela para mandar.</div>
+                
+                <div class="passo"><span class="passo-num">1</span> Abra a conversa <span class="passo-icone">💬</span></div>
+                <div class="passo"><span class="passo-num">2</span> <strong>Segure</strong> o <strong>microfone</strong> <span class="passo-icone">🎤</span></div>
+                <div class="passo"><span class="passo-num">3</span> Fale e <strong>solte</strong> para enviar <span class="passo-icone">👆</span></div>
+                
                 <div class="texto-oculto" style="display:none;">Para mandar uma mensagem de voz, abra a conversa com a pessoa. Encontre o botão do microfone, lá embaixo no lado direito. Segure o dedo nesse botão e fale normalmente. Quando terminar de falar, apenas tire o dedo da tela para a mensagem ser enviada.</div>
             </div>
 
             <!-- PÁGINA 4 (Golpes em geral) -->
             <div class="pagina" id="pagina-4">
-                <!-- Imagem ilustrativa: Idoso com expressão de alerta/atenção -->
-                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Pessoa segurando cartão com cuidado" class="imagem-ilustrativa">
+                <!-- Imagem corrigida: Alerta de golpe -->
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Pessoa segurando cartão" class="imagem-ilustrativa">
                 <h2>4. Cuidado com Golpes!</h2>
                 <button class="btn-ouvir" onclick="falarTexto('pagina-4')">🔊 Ouvir Explicação</button>
-                <div class="passo"><span class="passo-num">❌</span> Se alguém ligar pedindo <strong>senha</strong> ou PIX, <strong>DESLIGUE!</strong></div>
-                <div class="passo"><span class="passo-num">✅</span> Se for do banco, você mesmo liga para o número do <strong>cartão</strong>.</div>
+                
+                <div class="passo" style="background: #FADBD8; border-left-color: #E74C3C;"><span class="passo-num" style="background: #E74C3C;">❌</span> Se pedirem <strong>senha</strong> ou PIX, <strong>DESLIGUE!</strong></div>
+                <div class="passo" style="background: #D5F5E3; border-left-color: #2ECC71;"><span class="passo-num" style="background: #2ECC71;">✅</span> Ligue você mesmo para o <strong>banco</strong> <span class="passo-icone">📞</span></div>
+                
                 <div class="aviso-legal">🛑 Nós NUNCA pedimos sua senha ou dinheiro.</div>
                 <div class="texto-oculto" style="display:none;">Muito cuidado com golpes. Se alguém ligar pedindo sua senha ou pedindo para fazer um PIX, desligue na hora. Se for realmente do banco, pegue o seu cartão e ligue você mesmo para o número que fica no verso do cartão. E lembre-se: nós nunca pedimos sua senha ou dinheiro.</div>
             </div>
 
             <!-- PÁGINA 5 (Golpe da encomenda) -->
             <div class="pagina" id="pagina-5">
-                <!-- Imagem ilustrativa: Celular com alerta de mensagem -->
-                <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Alerta de segurança no celular" class="imagem-ilustrativa">
+                <!-- Imagem corrigida: Celular com alerta -->
+                <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Alerta no celular" class="imagem-ilustrativa">
                 <h2>5. Golpe da encomenda</h2>
                 <button class="btn-ouvir" onclick="falarTexto('pagina-5')">🔊 Ouvir Explicação</button>
-                <div class="passo"><span class="passo-num">❌</span> Se chegar mensagem dizendo que tem uma <strong>encomenda parada</strong>, <strong>NÃO CLIQUE NO LINK!</strong></div>
-                <div class="passo"><span class="passo-num">🗑️</span> Apague a mensagem na hora.</div>
+                
+                <div class="passo" style="background: #FADBD8; border-left-color: #E74C3C;"><span class="passo-num" style="background: #E74C3C;">❌</span> Se disserem que tem <strong>encomenda parada</strong>, <strong>NÃO CLIQUE!</strong></div>
+                <div class="passo"><span class="passo-num">🗑️</span> Apague a mensagem na hora <span class="passo-icone">📵</span></div>
+                
                 <div class="texto-oculto" style="display:none;">Existe um golpe muito comum sobre encomendas. Se chegar uma mensagem no seu celular dizendo que você tem uma encomenda parada e mandar um link, não clique nesse link de jeito nenhum. Apenas apague a mensagem na hora.</div>
             </div>
 
             <!-- PÁGINA 6 (Bloquear) -->
             <div class="pagina" id="pagina-6">
-                <!-- Imagem ilustrativa: Idosa sorrindo e tranquila com o celular -->
-                <img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Idosa tranquila com o celular" class="imagem-ilustrativa">
+                <!-- Imagem corrigida: Idosa tranquila -->
+                <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Idosa tranquila com o celular" class="imagem-ilustrativa">
                 <h2>6. Bloquear chato</h2>
                 <button class="btn-ouvir" onclick="falarTexto('pagina-6')">🔊 Ouvir Explicação</button>
-                <div class="passo"><span class="passo-num">1</span> Abra a conversa do número estranho.</div>
-                <div class="passo"><span class="passo-num">2</span> Aperte nos <strong>três pontinhos</strong> ⋮ em cima.</div>
-                <div class="passo"><span class="passo-num">3</span> Aperte em <strong>Bloquear</strong>.</div>
+                
+                <div class="passo"><span class="passo-num">1</span> Abra a conversa <span class="passo-icone">💬</span></div>
+                <div class="passo"><span class="passo-num">2</span> Aperte nos <strong>três pontinhos</strong> <span class="passo-icone">⋮</span></div>
+                <div class="passo"><span class="passo-num">3</span> Aperte em <strong>Bloquear</strong> <span class="passo-icone">🚫</span></div>
+                
                 <div class="texto-oculto" style="display:none;">Para bloquear um número chato, abra a conversa com essa pessoa. No canto de cima, aperte nos três pontinhos. No menu que abrir, aperte na palavra Bloquear. Assim você não recebe mais mensagens dessa pessoa.</div>
             </div>
 
