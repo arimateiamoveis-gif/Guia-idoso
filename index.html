@@ -31,6 +31,7 @@
             overflow: hidden;
         }
 
+        /* BARRA DO TOPO */
         .barra-topo {
             background: #2E86C1;
             color: #fff;
@@ -56,6 +57,7 @@
             gap: 5px;
         }
 
+        /* ÁREA DE CONTEÚDO */
         .paginas-wrapper {
             flex: 1;
             position: relative;
@@ -84,16 +86,14 @@
             transform: translateX(0);
         }
 
+        /* ESTILOS INTERNOS */
         .casal-container {
             display: flex;
             justify-content: center;
             gap: 10px;
             margin-bottom: 15px;
         }
-        .casal-icon {
-            font-size: 3.5em; 
-            line-height: 1;
-        }
+        .casal-icon { font-size: 3.5em; line-height: 1; }
         
         h1 { font-size: 2em; color: #2E86C1; margin-bottom: 10px; font-weight: 900; }
         h2 { font-size: 1.6em; color: #2E86C1; margin-bottom: 15px; font-weight: 900; }
@@ -112,6 +112,7 @@
             box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
         }
 
+        /* BOTÃO OUVIR */
         .btn-ouvir {
             background: #8E44AD;
             color: white;
@@ -180,6 +181,35 @@
             width: 100%;
         }
 
+        /* NOVO: BOTÃO DE MODELO DIFERENTE E CONTEÚDO PARALELO */
+        .btn-modelo-diferente {
+            background: #F39C12;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 15px 0;
+            width: 100%;
+            text-align: center;
+        }
+        .conteudo-paralelo {
+            display: none; /* Escondido por padrão */
+            background: #FEF9E7;
+            border: 2px solid #F39C12;
+            border-radius: 12px;
+            padding: 15px;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .conteudo-paralelo.ativo { display: block; }
+        .conteudo-paralelo h3 { color: #D35400; font-size: 1.1em; margin-bottom: 10px; text-align: center; }
+        .conteudo-paralelo p { font-size: 1em; font-weight: normal; margin-bottom: 8px; }
+        
+        /* LISTA DE ÍNDICE */
         .lista-indice {
             width: 100%;
             display: flex;
@@ -203,6 +233,7 @@
         }
         .lista-indice button span { font-size: 1.5em; }
 
+        /* BARRA INFERIOR */
         .barra-navegacao {
             display: flex;
             background: #f8f9fa;
@@ -227,6 +258,7 @@
         .btn-avancar { background: #2E86C1; color: #fff; }
         .btn-desativado { opacity: 0.5; pointer-events: none; }
 
+        /* WHATSAPP */
         .whatsapp-btn {
             position: absolute;
             bottom: 85px;
@@ -245,6 +277,7 @@
             border: 2px solid #128C7E;
         }
 
+        /* ACESSIBILIDADE */
         .acessibilidade {
             position: absolute;
             top: 70px;
@@ -303,16 +336,29 @@
                 </div>
             </div>
 
-            <!-- PÁGINA 1 -->
+            <!-- PÁGINA 1: AUMENTAR LETRA COM MODO PARALELO -->
             <div class="pagina" id="pagina-1">
                 <div class="card-icone">🔍</div>
                 <h2>1. Deixar a letra grande</h2>
                 <button class="btn-ouvir" onclick="falarTexto('pagina-1')">🔊 Ouvir Explicação</button>
+                
                 <div class="passo"><span class="passo-num">1</span> Abra a <strong>engrenagem</strong> ⚙️.</div>
                 <div class="passo"><span class="passo-num">2</span> Aperte em <strong>"Tela"</strong>.</div>
                 <div class="passo"><span class="passo-num">3</span> Aperte em <strong>"Letra"</strong>.</div>
                 <div class="passo"><span class="passo-num">4</span> Puxe a bolinha para o <strong>lado direito</strong> ➡️.</div>
-                <div class="texto-oculto" style="display:none;">Para deixar a letra grande, primeiro abra o aplicativo de configurações, que parece uma engrenagem. Depois, aperte na palavra Tela. Em seguida, aperte em Letra. Por fim, puxe a bolinha para o lado direito até ficar do tamanho que você gosta.</div>
+                
+                <!-- BOTÃO PARA VER OUTROS MODELOS -->
+                <button class="btn-modelo-diferente" onclick="alternarModelo()">📱 Meu celular é diferente</button>
+                
+                <!-- CONTEÚDO DO MODO PARALELO -->
+                <div class="conteudo-paralelo" id="modo-paralelo">
+                    <h3>Se você não achou "Tela", tente assim:</h3>
+                    <p><strong>Samsung:</strong> Aperte em <em>"Visor"</em> ou <em>"Tela e luz"</em>.</p>
+                    <p><strong>Xiaomi/Motorola:</strong> Aperte em <em>"Tela de bloqueio"</em> e depois <em>"Letra"</em>. Ou procure <em>"Tela e brilho"</em>.</p>
+                    <p><strong>iPhone (Apple):</strong> Aperte em <em>"Acessibilidade"</em>, depois em <em>"Tela e Tamanho do Texto"</em>.</p>
+                </div>
+
+                <div class="texto-oculto" style="display:none;">Para deixar a letra grande, primeiro abra o aplicativo de configurações, que parece uma engrenagem. Depois, aperte na palavra Tela. Em seguida, aperte em Letra. Por fim, puxe a bolinha para o lado direito até ficar do tamanho que você gosta. Se o seu celular for diferente e você não achar a palavra Tela, procure por Visor, Tela e brilho, ou Acessibilidade.</div>
             </div>
 
             <!-- PÁGINA 2 -->
@@ -398,6 +444,8 @@
             document.getElementById('pagina-' + paginaAtual).classList.add('ativa');
             atualizarBotoes();
             pararAudio();
+            // Esconde o modo paralelo ao trocar de página
+            document.getElementById('modo-paralelo').classList.remove('ativo'); 
         }
 
         function mudarPagina(direcao) {
@@ -448,14 +496,11 @@
                 sintese.cancel();
                 return;
             }
-
             const pagina = document.getElementById(idPagina);
             const textoParaLer = pagina.querySelector('.texto-oculto').innerText;
-
             const utterThis = new SpeechSynthesisUtterance(textoParaLer);
             utterThis.lang = 'pt-BR'; 
             utterThis.rate = 0.9; 
-            
             sintese.speak(utterThis);
         }
 
@@ -463,6 +508,12 @@
             if (sintese.speaking) {
                 sintese.cancel();
             }
+        }
+
+        // FUNÇÃO DO MODO PARALELO
+        function alternarModelo() {
+            const painel = document.getElementById('modo-paralelo');
+            painel.classList.toggle('ativo');
         }
 
         atualizarBotoes();
