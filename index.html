@@ -3,38 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Guia visual simples para idosos aprenderem a usar o celular com segurança.">
     <title>Guia do Celular para Idosos</title>
     <style>
-        /* ===== RESET E BASE ===== */
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: Arial, Helvetica, sans-serif;
             background: #f0f4f8;
             color: #1a1a1a;
-            line-height: 1.6;
-            padding: 16px;
+            line-height: 1.5;
+            padding: 12px;
             font-size: 20px;
+            padding-bottom: 90px; /* Espaço para o botão do WhatsApp não cobrir o texto */
         }
 
-        /* ===== CABEÇALHO ===== */
         header {
             text-align: center;
             background: #1a73e8;
             color: #fff;
-            padding: 24px 16px;
+            padding: 20px 16px;
             border-radius: 16px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
-        header h1 { font-size: 1.8em; margin-bottom: 8px; }
-        header p { font-size: 1.1em; }
+        header h1 { font-size: 1.6em; margin-bottom: 8px; }
+        header p { font-size: 1em; }
 
-        /* ===== BOTÃO DE ACESSIBILIDADE (AUMENTAR LETRA) ===== */
         .acessibilidade {
             position: fixed;
             bottom: 16px;
-            right: 16px;
+            left: 16px;
             z-index: 999;
             display: flex;
             flex-direction: column;
@@ -45,203 +42,285 @@
             color: #fff;
             border: none;
             border-radius: 50%;
-            width: 56px;
-            height: 56px;
-            font-size: 1.4em;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2em;
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0,0,0,0.25);
         }
-        .acessibilidade button:active { transform: scale(0.95); }
 
-        /* ===== CARDS ===== */
+        /* BOTÃO FLUTUANTE DO WHATSAPP */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
         .card {
             background: #fff;
             border-radius: 20px;
-            padding: 24px;
+            overflow: hidden;
             margin-bottom: 24px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border-left: 8px solid #1a73e8;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            border-bottom: 6px solid #1a73e8;
         }
-        .card .icone {
-            font-size: 2.8em;
-            display: block;
-            margin-bottom: 8px;
-        }
-        .card h2 {
-            font-size: 1.5em;
-            color: #1a73e8;
-            margin-bottom: 16px;
+        
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
         }
 
-        /* ===== PASSOS ===== */
+        .card-content {
+            padding: 20px;
+        }
+
+        .card h2 {
+            font-size: 1.4em;
+            color: #1a73e8;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h2 span { font-size: 1.5em; }
+
         .passo {
-            font-size: 1.15em;
-            margin: 12px 0;
-            padding: 12px 16px;
+            font-size: 1.1em;
+            margin: 10px 0;
+            padding: 12px;
             background: #e8f0fe;
-            border-radius: 12px;
+            border-radius: 10px;
             border-left: 6px solid #34a853;
         }
         .passo strong { color: #d93025; }
 
-        /* ===== DICAS E SEGURANÇA ===== */
         .dica {
             background: #fff8e1;
             border-left: 6px solid #f9ab00;
-            padding: 14px 16px;
-            border-radius: 12px;
-            margin-top: 16px;
-            font-size: 1.05em;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 12px;
+            font-size: 1em;
         }
         .seguranca {
             background: #fce8e6;
             border-left: 6px solid #d93025;
-            padding: 14px 16px;
-            border-radius: 12px;
-            margin-top: 12px;
-            font-size: 1.05em;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 10px;
+            font-size: 1em;
         }
         .seguranca strong { color: #d93025; }
 
-        /* ===== RODAPÉ ===== */
-        footer {
-            text-align: center;
-            padding: 24px 16px;
+        /* ESTILO DO FAQ (DÚVIDAS FREQUENTES) */
+        .faq-section {
+            background: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+        }
+        .faq-section h2 { color: #1a73e8; text-align: center; margin-bottom: 16px; }
+        
+        .faq-item {
+            border-bottom: 2px solid #e8f0fe;
+            padding: 10px 0;
+        }
+        .faq-item:last-child { border-bottom: none; }
+        
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #1a1a1a;
+            cursor: pointer;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5em;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+        .faq-question.active::after { content: '−'; }
+        
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            background: #e8f0fe;
+            border-radius: 10px;
+            margin-top: 5px;
+            font-size: 1em;
+        }
+        .faq-answer.active { display: block; }
+
+        /* AVISO LEGAL / RODAPÉ */
+        .aviso-legal {
+            background: #fff3cd;
+            border: 2px dashed #f9ab00;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
             font-size: 0.95em;
-            color: #555;
-        }
-        footer a { color: #1a73e8; text-decoration: none; font-weight: bold; }
-
-        /* ===== MODO ALTO CONTRASTE (OPCIONAL) ===== */
-        body.alto-contraste {
-            background: #000;
-            color: #fff;
-        }
-        body.alto-contraste .card {
-            background: #111;
-            border-left-color: #ffd700;
-        }
-        body.alto-contraste .card h2 { color: #ffd700; }
-        body.alto-contraste .passo {
-            background: #222;
-            color: #fff;
-            border-left-color: #00ff00;
-        }
-        body.alto-contraste .passo strong { color: #ff6b6b; }
-        body.alto-contraste .dica {
-            background: #332b00;
-            color: #fff;
-            border-left-color: #ffd700;
-        }
-        body.alto-contraste .seguranca {
-            background: #330000;
-            color: #fff;
-            border-left-color: #ff6b6b;
+            color: #664d03;
+            text-align: center;
         }
 
-        /* ===== RESPONSIVO ===== */
         @media (min-width: 768px) {
-            body { max-width: 800px; margin: 0 auto; font-size: 22px; }
-            header h1 { font-size: 2.2em; }
+            body { max-width: 600px; margin: 0 auto; font-size: 22px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>📱 Guia do Celular para Idosos</h1>
-        <p>Toque nos cards para ler. Se não conseguir, peça ajuda.</p>
+        <h1>📱 Guia do Celular</h1>
+        <p>Aprenda de forma simples e segura.</p>
     </header>
 
-    <!-- BOTÕES DE ACESSIBILIDADE -->
     <div class="acessibilidade">
-        <button onclick="aumentarLetra()" title="Aumentar letra" aria-label="Aumentar letra">A+</button>
-        <button onclick="diminuirLetra()" title="Diminuir letra" aria-label="Diminuir letra">A-</button>
-        <button onclick="alternarContraste()" title="Alto contraste" aria-label="Alternar alto contraste">🌓</button>
+        <button onclick="aumentarLetra()" title="Aumentar letra">A+</button>
+        <button onclick="diminuirLetra()" title="Diminuir letra">A-</button>
+        <button onclick="alternarContraste()" title="Alto contraste">🌓</button>
+    </div>
+
+    <!-- AVISO LEGAL NO TOPO -->
+    <div class="aviso-legal">
+        <strong>⚠️ ATENÇÃO:</strong> Este site é um projeto de extensão universitária <strong>100% gratuito</strong>. <strong>NUNCA</strong> solicitamos senhas, dados bancários ou pagamentos. Nosso único objetivo é orientar você!
     </div>
 
     <!-- CARD 1 -->
     <div class="card">
-        <span class="icone">🔍</span>
-        <h2>1. Aumentar as letras</h2>
-        <div class="passo">1. Abra a <strong>engrenagem</strong> ⚙️ (Configurações).</div>
-        <div class="passo">2. Toque em <strong>"Tela"</strong> ou <strong>"Visor"</strong>.</div>
-        <div class="passo">3. Toque em <strong>"Tamanho da fonte"</strong>.</div>
-        <div class="passo">4. Arraste a bolinha para a <strong>direita</strong>.</div>
-        <div class="dica">💡 Faça isso primeiro. Vai facilitar todo o resto.</div>
+        <img src="https://images.unsplash.com/photo-1586105251261-72a756497a11?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Idosa usando celular">
+        <div class="card-content">
+            <h2><span>🔍</span> 1. Aumentar as letras</h2>
+            <div class="passo">1. Abra a <strong>engrenagem</strong> ⚙️.</div>
+            <div class="passo">2. Toque em <strong>"Tela"</strong>.</div>
+            <div class="passo">3. Toque em <strong>"Tamanho da fonte"</strong>.</div>
+            <div class="passo">4. Arraste a bolinha para a <strong>direita</strong>.</div>
+            <div class="dica">💡 Faça isso primeiro. Vai facilitar todo o resto!</div>
+        </div>
     </div>
 
     <!-- CARD 2 -->
     <div class="card">
-        <span class="icone">📹</span>
-        <h2>2. Chamada de vídeo no WhatsApp</h2>
-        <div class="passo">1. Abra o <strong>WhatsApp</strong> (balão verde).</div>
-        <div class="passo">2. Toque no <strong>nome da pessoa</strong>.</div>
-        <div class="passo">3. Toque no ícone de <strong>câmera</strong> (canto superior direito).</div>
-        <div class="passo">4. Espere a pessoa atender.</div>
-        <div class="dica">💡 Se a tela ficar escura, veja se o dedo não está cobrindo a câmera.</div>
-        <div class="seguranca">🚨 Só faça chamada para números que você <strong>conhece</strong>.</div>
+        <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Idosos conversando por vídeo">
+        <div class="card-content">
+            <h2><span>📹</span> 2. Chamada de vídeo</h2>
+            <div class="passo">1. Abra o <strong>WhatsApp</strong>.</div>
+            <div class="passo">2. Toque no <strong>nome da pessoa</strong>.</div>
+            <div class="passo">3. Toque no ícone de <strong>câmera</strong>.</div>
+            <div class="passo">4. Espere a pessoa atender.</div>
+            <div class="seguranca">🚨 Só faça chamada para números que você <strong>conhece</strong>.</div>
+        </div>
     </div>
 
     <!-- CARD 3 -->
     <div class="card">
-        <span class="icone">🎤</span>
-        <h2>3. Enviar áudio no WhatsApp</h2>
-        <div class="passo">1. Abra a conversa com a pessoa.</div>
-        <div class="passo">2. <strong>Segure</strong> o botão verde do microfone.</div>
-        <div class="passo">3. Fale normalmente, sem pressa.</div>
-        <div class="passo">4. <strong>Solte</strong> o dedo para enviar.</div>
-        <div class="dica">💡 Se errou, deslize o dedo para o lado antes de soltar. Assim cancela.</div>
+        <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mãos segurando celular">
+        <div class="card-content">
+            <h2><span>🎤</span> 3. Enviar áudio</h2>
+            <div class="passo">1. Abra a conversa.</div>
+            <div class="passo">2. <strong>Segure</strong> o botão do microfone.</div>
+            <div class="passo">3. Fale sem pressa.</div>
+            <div class="passo">4. <strong>Solte</strong> o dedo para enviar.</div>
+            <div class="dica">💡 Se errou, deslize o dedo para o lado antes de soltar.</div>
+        </div>
     </div>
 
     <!-- CARD 4 -->
     <div class="card">
-        <span class="icone">🚨</span>
-        <h2>4. Golpe por ligação</h2>
-        <div class="passo">Sinais: pedem <strong>senha</strong>, dizem que você <strong>ganhou prêmio</strong>, pedem para <strong>instalar aplicativo</strong>.</div>
-        <div class="seguranca">🚨 <strong>Desligue.</strong> Ligue para o banco pelo número do <strong>verso do cartão</strong>.</div>
-        <div class="dica">💡 Banco nenhum liga pedindo senha. <strong>Nunca.</strong></div>
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pessoa segurando cartão de banco">
+        <div class="card-content">
+            <h2><span>🚨</span> 4. Golpe por ligação</h2>
+            <div class="passo">Sinais: pedem <strong>senha</strong>, dizem que você <strong>ganhou prêmio</strong>.</div>
+            <div class="seguranca">🚨 <strong>Desligue.</strong> Ligue para o banco pelo número do <strong>verso do cartão</strong>.</div>
+            <div class="dica">💡 Banco nenhum liga pedindo senha. <strong>Nunca.</strong></div>
+        </div>
     </div>
 
     <!-- CARD 5 -->
     <div class="card">
-        <span class="icone">🔗</span>
-        <h2>5. Golpe por link</h2>
-        <div class="passo">Sinais: link estranho, "encomenda parada", "CPF bloqueado".</div>
-        <div class="seguranca">🚨 <strong>Não clique.</strong> Apague a mensagem.</div>
-        <div class="dica">💡 Na dúvida, não clique. Melhor perder promoção do que perder dinheiro.</div>
+        <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Alerta de segurança no celular">
+        <div class="card-content">
+            <h2><span>🔗</span> 5. Golpe por link</h2>
+            <div class="passo">Sinais: link estranho, "encomenda parada".</div>
+            <div class="seguranca">🚨 <strong>Não clique.</strong> Apague a mensagem.</div>
+            <div class="dica">💡 Melhor perder promoção do que perder dinheiro.</div>
+        </div>
     </div>
 
     <!-- CARD 6 -->
     <div class="card">
-        <span class="icone">🚫</span>
-        <h2>6. Bloquear número desconhecido</h2>
-        <div class="passo">1. Abra o WhatsApp.</div>
-        <div class="passo">2. Toque no <strong>número desconhecido</strong>.</div>
-        <div class="passo">3. Toque nos <strong>três pontinhos</strong> (canto superior direito).</div>
-        <div class="passo">4. Toque em <strong>"Bloquear"</strong>.</div>
-        <div class="dica">💡 Se ligar de outro número, bloqueie de novo. Não responda.</div>
+        <img src="https://images.unsplash.com/photo-1596526131083-e8c633c948d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ícone de bloqueio no celular">
+        <div class="card-content">
+            <h2><span>🚫</span> 6. Bloquear número</h2>
+            <div class="passo">1. Abra o WhatsApp.</div>
+            <div class="passo">2. Toque no <strong>número desconhecido</strong>.</div>
+            <div class="passo">3. Toque nos <strong>três pontinhos</strong>.</div>
+            <div class="passo">4. Toque em <strong>"Bloquear"</strong>.</div>
+        </div>
     </div>
 
-    <!-- CARD 7 -->
-    <div class="card">
-        <span class="icone">🤝</span>
-        <h2>7. Pedir ajuda</h2>
-        <div class="passo">Ligue para um <strong>familiar de confiança</strong>.</div>
-        <div class="passo">Vá até a <strong>UBS</strong> ou <strong>Centro Comunitário</strong>.</div>
-        <div class="seguranca">🚨 <strong>Nunca</strong> peça ajuda a um desconhecido na rua.</div>
-        <div class="dica">💡 Salve um número com o nome <strong>"AJUDA"</strong> ou <strong>"FILHO(A)"</strong>.</div>
+    <!-- SEÇÃO DE DÚVIDAS FREQUENTES (FAQ) -->
+    <div class="faq-section">
+        <h2>❓ Dúvidas Frequentes</h2>
+        
+        <div class="faq-item">
+            <button class="faq-question">Meu celular é muito antigo, serve?</button>
+            <div class="faq-answer">Sim! O guia serve para qualquer celular. Se o seu não tiver WhatsApp, ainda assim você pode usar para ligações normais e pedir ajuda.</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">O que eu faço se receber um PIX errado?</button>
+            <div class="faq-answer">Não devolva o dinheiro por conta própria! É um golpe comum. Avise seu banco imediatamente pelo aplicativo ou ligue para a central. Nunca clique em links que a pessoa mandar.</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">Como saber se a ligação é do banco de verdade?</button>
+            <div class="faq-answer">Desligue e ligue de volta. O banco verdadeiro nunca liga pedindo sua senha. Ligue você mesmo para o número que fica no verso do seu cartão e pergunte se há algo pendente.</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">Alguém pode invadir meu celular só com o número?</button>
+            <div class="faq-answer">Não, ninguém consegue adivinhar sua senha só sabendo o número. O perigo está em clicar em links ruins ou passar seus dados (como CPF e senha) para estranhos.</div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">O que é o "código de verificação" no SMS?</button>
+            <div class="faq-answer">É como uma chave que entra na sua casa. Se você não pediu para entrar em nenhum aplicativo, <strong>NUNCA</strong> mande esse código para ninguém.</div>
+        </div>
     </div>
 
-    <footer>
-        <p>Projeto de Extensão Universitária • <a href="#">Voltar ao topo</a></p>
-        <p>Feito com ❤️ para a comunidade.</p>
-    </footer>
+    <!-- BOTÃO FLUTUANTE DO WHATSAPP COM SEU NÚMERO -->
+    <a href="https://wa.me/5561999758262?text=Ol%C3%A1!%20Estou%20com%20uma%20d%C3%BAvida%20sobre%20o%20Guia%20do%20Celular." target="_blank" class="whatsapp-btn">
+        <span style="font-size: 1.5em;">💬</span> Tirar Dúvida
+    </a>
 
-    <!-- JAVASCRIPT: AUMENTAR/DIMINUIR LETRA E CONTRASTE -->
     <script>
-        let tamanhoAtual = 20; // tamanho base em px
+        // SCRIPT DE ACESSIBILIDADE
+        let tamanhoAtual = 20;
         const MIN = 16;
         const MAX = 32;
 
@@ -262,7 +341,15 @@
         function alternarContraste() {
             document.body.classList.toggle('alto-contraste');
         }
-    </script>
 
+        // SCRIPT DO FAQ (ABRIR E FECHAR)
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                button.classList.toggle('active');
+                answer.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>
