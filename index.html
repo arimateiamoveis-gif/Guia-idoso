@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guia visual simples para idosos aprenderem a usar o celular com segurança.">
+    <title>Guia do Celular para Idosos</title>
+    <style>
+        /* ===== RESET E BASE ===== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f0f4f8;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 16px;
+            font-size: 20px;
+        }
+
+        /* ===== CABEÇALHO ===== */
+        header {
+            text-align: center;
+            background: #1a73e8;
+            color: #fff;
+            padding: 24px 16px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+        }
+        header h1 { font-size: 1.8em; margin-bottom: 8px; }
+        header p { font-size: 1.1em; }
+
+        /* ===== BOTÃO DE ACESSIBILIDADE (AUMENTAR LETRA) ===== */
+        .acessibilidade {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .acessibilidade button {
+            background: #1a73e8;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            font-size: 1.4em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+        .acessibilidade button:active { transform: scale(0.95); }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-left: 8px solid #1a73e8;
+        }
+        .card .icone {
+            font-size: 2.8em;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .card h2 {
+            font-size: 1.5em;
+            color: #1a73e8;
+            margin-bottom: 16px;
+        }
+
+        /* ===== PASSOS ===== */
+        .passo {
+            font-size: 1.15em;
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: #e8f0fe;
+            border-radius: 12px;
+            border-left: 6px solid #34a853;
+        }
+        .passo strong { color: #d93025; }
+
+        /* ===== DICAS E SEGURANÇA ===== */
+        .dica {
+            background: #fff8e1;
+            border-left: 6px solid #f9ab00;
+            padding: 14px 16px;
+            border-radius: 12px;
+            margin-top: 16px;
+            font-size: 1.05em;
+        }
+        .seguranca {
+            background: #fce8e6;
+            border-left: 6px solid #d93025;
+            padding: 14px 16px;
+            border-radius: 12px;
+            margin-top: 12px;
+            font-size: 1.05em;
+        }
+        .seguranca strong { color: #d93025; }
+
+        /* ===== RODAPÉ ===== */
+        footer {
+            text-align: center;
+            padding: 24px 16px;
+            font-size: 0.95em;
+            color: #555;
+        }
+        footer a { color: #1a73e8; text-decoration: none; font-weight: bold; }
+
+        /* ===== MODO ALTO CONTRASTE (OPCIONAL) ===== */
+        body.alto-contraste {
+            background: #000;
+            color: #fff;
+        }
+        body.alto-contraste .card {
+            background: #111;
+            border-left-color: #ffd700;
+        }
+        body.alto-contraste .card h2 { color: #ffd700; }
+        body.alto-contraste .passo {
+            background: #222;
+            color: #fff;
+            border-left-color: #00ff00;
+        }
+        body.alto-contraste .passo strong { color: #ff6b6b; }
+        body.alto-contraste .dica {
+            background: #332b00;
+            color: #fff;
+            border-left-color: #ffd700;
+        }
+        body.alto-contraste .seguranca {
+            background: #330000;
+            color: #fff;
+            border-left-color: #ff6b6b;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (min-width: 768px) {
+            body { max-width: 800px; margin: 0 auto; font-size: 22px; }
+            header h1 { font-size: 2.2em; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>📱 Guia do Celular para Idosos</h1>
+        <p>Toque nos cards para ler. Se não conseguir, peça ajuda.</p>
+    </header>
+
+    <!-- BOTÕES DE ACESSIBILIDADE -->
+    <div class="acessibilidade">
+        <button onclick="aumentarLetra()" title="Aumentar letra" aria-label="Aumentar letra">A+</button>
+        <button onclick="diminuirLetra()" title="Diminuir letra" aria-label="Diminuir letra">A-</button>
+        <button onclick="alternarContraste()" title="Alto contraste" aria-label="Alternar alto contraste">🌓</button>
+    </div>
+
+    <!-- CARD 1 -->
+    <div class="card">
+        <span class="icone">🔍</span>
+        <h2>1. Aumentar as letras</h2>
+        <div class="passo">1. Abra a <strong>engrenagem</strong> ⚙️ (Configurações).</div>
+        <div class="passo">2. Toque em <strong>"Tela"</strong> ou <strong>"Visor"</strong>.</div>
+        <div class="passo">3. Toque em <strong>"Tamanho da fonte"</strong>.</div>
+        <div class="passo">4. Arraste a bolinha para a <strong>direita</strong>.</div>
+        <div class="dica">💡 Faça isso primeiro. Vai facilitar todo o resto.</div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card">
+        <span class="icone">📹</span>
+        <h2>2. Chamada de vídeo no WhatsApp</h2>
+        <div class="passo">1. Abra o <strong>WhatsApp</strong> (balão verde).</div>
+        <div class="passo">2. Toque no <strong>nome da pessoa</strong>.</div>
+        <div class="passo">3. Toque no ícone de <strong>câmera</strong> (canto superior direito).</div>
+        <div class="passo">4. Espere a pessoa atender.</div>
+        <div class="dica">💡 Se a tela ficar escura, veja se o dedo não está cobrindo a câmera.</div>
+        <div class="seguranca">🚨 Só faça chamada para números que você <strong>conhece</strong>.</div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card">
+        <span class="icone">🎤</span>
+        <h2>3. Enviar áudio no WhatsApp</h2>
+        <div class="passo">1. Abra a conversa com a pessoa.</div>
+        <div class="passo">2. <strong>Segure</strong> o botão verde do microfone.</div>
+        <div class="passo">3. Fale normalmente, sem pressa.</div>
+        <div class="passo">4. <strong>Solte</strong> o dedo para enviar.</div>
+        <div class="dica">💡 Se errou, deslize o dedo para o lado antes de soltar. Assim cancela.</div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="card">
+        <span class="icone">🚨</span>
+        <h2>4. Golpe por ligação</h2>
+        <div class="passo">Sinais: pedem <strong>senha</strong>, dizem que você <strong>ganhou prêmio</strong>, pedem para <strong>instalar aplicativo</strong>.</div>
+        <div class="seguranca">🚨 <strong>Desligue.</strong> Ligue para o banco pelo número do <strong>verso do cartão</strong>.</div>
+        <div class="dica">💡 Banco nenhum liga pedindo senha. <strong>Nunca.</strong></div>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="card">
+        <span class="icone">🔗</span>
+        <h2>5. Golpe por link</h2>
+        <div class="passo">Sinais: link estranho, "encomenda parada", "CPF bloqueado".</div>
+        <div class="seguranca">🚨 <strong>Não clique.</strong> Apague a mensagem.</div>
+        <div class="dica">💡 Na dúvida, não clique. Melhor perder promoção do que perder dinheiro.</div>
+    </div>
+
+    <!-- CARD 6 -->
+    <div class="card">
+        <span class="icone">🚫</span>
+        <h2>6. Bloquear número desconhecido</h2>
+        <div class="passo">1. Abra o WhatsApp.</div>
+        <div class="passo">2. Toque no <strong>número desconhecido</strong>.</div>
+        <div class="passo">3. Toque nos <strong>três pontinhos</strong> (canto superior direito).</div>
+        <div class="passo">4. Toque em <strong>"Bloquear"</strong>.</div>
+        <div class="dica">💡 Se ligar de outro número, bloqueie de novo. Não responda.</div>
+    </div>
+
+    <!-- CARD 7 -->
+    <div class="card">
+        <span class="icone">🤝</span>
+        <h2>7. Pedir ajuda</h2>
+        <div class="passo">Ligue para um <strong>familiar de confiança</strong>.</div>
+        <div class="passo">Vá até a <strong>UBS</strong> ou <strong>Centro Comunitário</strong>.</div>
+        <div class="seguranca">🚨 <strong>Nunca</strong> peça ajuda a um desconhecido na rua.</div>
+        <div class="dica">💡 Salve um número com o nome <strong>"AJUDA"</strong> ou <strong>"FILHO(A)"</strong>.</div>
+    </div>
+
+    <footer>
+        <p>Projeto de Extensão Universitária • <a href="#">Voltar ao topo</a></p>
+        <p>Feito com ❤️ para a comunidade.</p>
+    </footer>
+
+    <!-- JAVASCRIPT: AUMENTAR/DIMINUIR LETRA E CONTRASTE -->
+    <script>
+        let tamanhoAtual = 20; // tamanho base em px
+        const MIN = 16;
+        const MAX = 32;
+
+        function aumentarLetra() {
+            if (tamanhoAtual < MAX) {
+                tamanhoAtual += 2;
+                document.body.style.fontSize = tamanhoAtual + 'px';
+            }
+        }
+
+        function diminuirLetra() {
+            if (tamanhoAtual > MIN) {
+                tamanhoAtual -= 2;
+                document.body.style.fontSize = tamanhoAtual + 'px';
+            }
+        }
+
+        function alternarContraste() {
+            document.body.classList.toggle('alto-contraste');
+        }
+    </script>
+
+</body>
+</html>
