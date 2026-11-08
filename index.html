@@ -181,7 +181,7 @@
             width: 100%;
         }
 
-        /* NOVO: BOTÃO DE MODELO DIFERENTE E CONTEÚDO PARALELO */
+        /* BOTÃO DE MODELO DIFERENTE E CONTEÚDO PARALELO */
         .btn-modelo-diferente {
             background: #F39C12;
             color: #fff;
@@ -196,7 +196,7 @@
             text-align: center;
         }
         .conteudo-paralelo {
-            display: none; /* Escondido por padrão */
+            display: none;
             background: #FEF9E7;
             border: 2px solid #F39C12;
             border-radius: 12px;
@@ -258,22 +258,38 @@
         .btn-avancar { background: #2E86C1; color: #fff; }
         .btn-desativado { opacity: 0.5; pointer-events: none; }
 
-        /* WHATSAPP */
-        .whatsapp-btn {
+        /* BOTÃO DO WHATSAPP MELHORADO */
+        .whatsapp-container {
             position: absolute;
             bottom: 85px;
             right: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            z-index: 100;
+        }
+        .aviso-whatsapp {
+            background: #fff;
+            color: #333;
+            font-size: 0.85em;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border: 2px solid #25D366;
+        }
+        .whatsapp-btn {
             background-color: #25D366;
             color: white;
             border-radius: 50px;
-            padding: 10px 15px;
+            padding: 12px 20px;
             text-decoration: none;
             display: flex;
             align-items: center;
             font-weight: 900;
-            font-size: 1em;
+            font-size: 1.1em;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            z-index: 100;
             border: 2px solid #128C7E;
         }
 
@@ -336,7 +352,7 @@
                 </div>
             </div>
 
-            <!-- PÁGINA 1: AUMENTAR LETRA COM MODO PARALELO -->
+            <!-- PÁGINA 1 -->
             <div class="pagina" id="pagina-1">
                 <div class="card-icone">🔍</div>
                 <h2>1. Deixar a letra grande</h2>
@@ -347,10 +363,8 @@
                 <div class="passo"><span class="passo-num">3</span> Aperte em <strong>"Letra"</strong>.</div>
                 <div class="passo"><span class="passo-num">4</span> Puxe a bolinha para o <strong>lado direito</strong> ➡️.</div>
                 
-                <!-- BOTÃO PARA VER OUTROS MODELOS -->
                 <button class="btn-modelo-diferente" onclick="alternarModelo()">📱 Meu celular é diferente</button>
                 
-                <!-- CONTEÚDO DO MODO PARALELO -->
                 <div class="conteudo-paralelo" id="modo-paralelo">
                     <h3>Se você não achou "Tela", tente assim:</h3>
                     <p><strong>Samsung:</strong> Aperte em <em>"Visor"</em> ou <em>"Tela e luz"</em>.</p>
@@ -419,9 +433,13 @@
 
         </div>
 
-        <a href="https://wa.me/5561999758262?text=Ola%2C%20preciso%20de%20ajuda%20com%20o%20Guia%20do%20Celular" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
-            💬 Ajuda
-        </a>
+        <!-- BOTÃO DO WHATSAPP COM TEXTO DE APOIO -->
+        <div class="whatsapp-container">
+            <div class="aviso-whatsapp">Dúvidas? Fale comigo</div>
+            <a href="https://api.whatsapp.com/send?phone=5561999758262&text=Ola%2C%20preciso%20de%20ajuda%20com%20o%20Guia%20do%20Celular" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+                💬 Ajuda
+            </a>
+        </div>
 
         <div class="barra-navegacao">
             <button class="btn-nav btn-voltar" id="btn-voltar" onclick="mudarPagina(-1)">⬅️ Voltar</button>
@@ -444,7 +462,6 @@
             document.getElementById('pagina-' + paginaAtual).classList.add('ativa');
             atualizarBotoes();
             pararAudio();
-            // Esconde o modo paralelo ao trocar de página
             document.getElementById('modo-paralelo').classList.remove('ativo'); 
         }
 
@@ -510,7 +527,6 @@
             }
         }
 
-        // FUNÇÃO DO MODO PARALELO
         function alternarModelo() {
             const painel = document.getElementById('modo-paralelo');
             painel.classList.toggle('ativo');
