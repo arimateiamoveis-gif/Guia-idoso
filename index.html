@@ -77,6 +77,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            padding-bottom: 80px; /* Espaço para o botão de ajuda não cobrir o texto */
         }
 
         .pagina.ativa {
@@ -86,7 +87,16 @@
         }
 
         /* ESTILOS INTERNOS */
-        .casal-icon { font-size: 4.5em; margin-bottom: 15px; line-height: 1; }
+        .casal-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .casal-icon {
+            font-size: 3.5em; 
+            line-height: 1;
+        }
         
         h1 { font-size: 2em; color: #2E86C1; margin-bottom: 10px; font-weight: 900; }
         h2 { font-size: 1.6em; color: #2E86C1; margin-bottom: 15px; font-weight: 900; }
@@ -223,10 +233,10 @@
         .btn-avancar { background: #2E86C1; color: #fff; }
         .btn-desativado { opacity: 0.5; pointer-events: none; }
 
-        /* WHATSAPP */
+        /* WHATSAPP (Ajustado para não cobrir o texto) */
         .whatsapp-btn {
             position: absolute;
-            bottom: 80px;
+            bottom: 85px; /* Acima da barra de navegação */
             right: 15px;
             background-color: #25D366;
             color: white;
@@ -284,7 +294,10 @@
             
             <!-- PÁGINA 0: CAPA / ÍNDICE -->
             <div class="pagina ativa" id="pagina-0">
-                <span class="casal-icon">👴🏽👵🏽</span>
+                <div class="casal-container">
+                    <span class="casal-icon">👴🏽</span>
+                    <span class="casal-icon">👵🏽</span>
+                </div>
                 <h1>Guia Fácil do Celular</h1>
                 <p>Toque em um assunto para aprender:</p>
                 
@@ -368,6 +381,7 @@
 
         </div>
 
+        <!-- Botão do WhatsApp posicionado acima da barra de navegação -->
         <a href="https://wa.me/5561999758262?text=Ola%2C%20preciso%20de%20ajuda%20com%20o%20Guia%20do%20Celular" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
             💬 Ajuda
         </a>
@@ -393,10 +407,10 @@
             paginaAtual = index;
             document.getElementById('pagina-' + paginaAtual).classList.add('ativa');
             atualizarBotoes();
+            pararAudio(); // Para o áudio sempre que mudar de página
         }
 
         function mudarPagina(direcao) {
-            pararAudio(); // Para o áudio se mudar de página
             const novaPagina = paginaAtual + direcao;
             if (novaPagina >= 0 && novaPagina <= totalPaginas) {
                 irParaPagina(novaPagina);
@@ -440,23 +454,19 @@
 
         // LÓGICA DO ÁUDIO (TEXT-TO-SPEECH)
         let sintese = window.speechSynthesis;
-        let falando = false;
 
         function falarTexto(idPagina) {
-            // Se já estiver falando, para o áudio (funciona como botão de Pause)
             if (sintese.speaking) {
                 sintese.cancel();
                 return;
             }
 
-            // Pega o texto escondido da página específica
             const pagina = document.getElementById(idPagina);
             const textoParaLer = pagina.querySelector('.texto-oculto').innerText;
 
-            // Configura a voz
             const utterThis = new SpeechSynthesisUtterance(textoParaLer);
-            utterThis.lang = 'pt-BR'; // Força o idioma Português do Brasil
-            utterThis.rate = 0.9; // Deixa a voz um pouquinho mais devagar para idosos entenderem melhor
+            utterThis.lang = 'pt-BR'; 
+            utterThis.rate = 0.9; // Velocidade ligeiramente reduzida
             
             sintese.speak(utterThis);
         }
